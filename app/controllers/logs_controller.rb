@@ -1,12 +1,14 @@
 require 'open-uri'
+require 'zlib'
 
 class LogsController < ApplicationController
   def index
-    date_lists_text = URI.open "https://tenhou.net/sc/raw/list.cgi#"
-    @log = date_lists_text.read
+    yesterday = Time.current.yesterday
+    file_time_format = yesterday.strftime("%Y%m%d")
+    yesterday_log = URI.open "https://tenhou.net/sc/raw/dat/sca#{file_time_format}.log.gz"
 
-    File.open("file_name_lists.txt","w") do |f|
-      f.puts @log
-    end
+    Zlib::GzipReader.open(yesterday_log) {|gz|
+      @log = gz.read
+    }
   end
 end
