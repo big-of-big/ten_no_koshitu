@@ -1,6 +1,6 @@
 h2
   | ユーザー情報編集
-= form_with model: @user, url: user_registration_path, local: true do |f|
+= form_with model: @user, local: true do |f|
   .field
     = f.label :name
     br
@@ -18,7 +18,7 @@ h2
     - if @minimum_password_length
       |  (
       = @minimum_password_length
-      | 文字以上) 
+      | 文字以上)
     br
     = f.password_field :password, autocomplete: "new-password"
   .field
@@ -27,4 +27,4 @@ h2
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
     = f.submit "保存"
-= link_to "アカウント削除", registration_path(@user), data: { confirm: "本当によろしいですか？" }, method: :delete
+= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete

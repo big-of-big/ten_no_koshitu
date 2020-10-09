@@ -9,15 +9,10 @@ class UsersController < ApplicationController
   def show
   end
 
-  def new
-    @user = User.new
-  end
-
   def edit
   end
 
   def update
-    binding.pry
     if @user.update(user_params)
       redirect_to @user, notice: "ユーザー情報を更新しました"
     else
