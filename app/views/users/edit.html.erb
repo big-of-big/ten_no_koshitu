@@ -1,7 +1,6 @@
 <h2>ユーザー情報編集</h2>
 
 <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -35,3 +34,4 @@
     <%= f.submit "更新する" %>
   </div>
 <% end %>
+
