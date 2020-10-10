@@ -2,10 +2,9 @@ h2
   | アカウント登録
 = form_with model: @user, url: signup_path, local: true do |f|
   /= render "devise/shared/error_messages", resource: resource
-  .field
+  .form-group
     = f.label :name
-    br
-    = f.text_field :name, autofocus: true
+    = f.text_field :name, autofocus: true, class: "form-control"
   .field
     = f.label :tenhou_account
     br
