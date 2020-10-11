@@ -17,4 +17,8 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def self.hello
+    puts "hello world"
+  end
 end
