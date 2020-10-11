@@ -1,5 +1,5 @@
 h2
-  | ユーザー情報編集
+  | ユーザー設定
 = form_with model: @user, local: true do |f|
   .form-group
     = f.label :name
@@ -20,5 +20,10 @@ h2
   .form-group
     = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-  = f.submit "保存", class: "btn btn-primary mb-3"
-= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "btn btn-warning mb-3"
+  = f.submit "保存", class: "btn btn-primary mb-3 px-5"
+= link_to 'ログアウト', logout_path, method: :delete, class: "btn btn-secondary mb-3"
+= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "btn btn-danger mb-3 mx-3"
+.mb-3
+  = link_to "ホーム", root_path,class:"mr-2"
+  span|
+  = link_to "チーム設定", root_path, class: "ml-2"
