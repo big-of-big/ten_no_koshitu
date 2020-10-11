@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
+  authenticated :user do
+    root to: "users#index"
+  end
+  root to: 'welcome#index', as: "home"
 
   devise_for :users, skip: %i[sessions registrations]
   devise_scope :user do
