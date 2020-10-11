@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     delete 'retirement', to: 'devise/registrations#destroy'
   end
 
+  # ユーザー作成はdeviseで行う
   resources :users, except: %i[new create]
+
+  resources :teams, only: %i[new edit create update]
   get 'logs/index'
 end
