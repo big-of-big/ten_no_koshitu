@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_092547) do
+ActiveRecord::Schema.define(version: 2020_10_12_011758) do
 
   create_table "logs", force: :cascade do |t|
     t.string "name", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_logs_on_name", unique: true
   end
 
   create_table "teams", force: :cascade do |t|
