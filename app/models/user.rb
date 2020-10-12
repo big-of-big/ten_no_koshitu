@@ -17,9 +17,24 @@ class User < ApplicationRecord
 
   # ログを1ゲームごとに分けて配列にする処理
   # プレーヤー名に"\r\n"が含まれていてもエスケープしてくれる
-  def text_logs
-    text_content = Log.last.content
+  def games
+    text_content = Log.first.content
     text_content.split("\r\n")
+  end
+
+  # 自分が打った試合のみの配列を返す
+  def my_games
+    games.select do |game|
+      game.include?(self.tenhou_account)
+    end
+  end
+
+  # 4・3人打ち合算の得点を出す
+  def scores
+    my_games.map do |my_game|
+      m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+      m[:score]
+    end
   end
 end
 

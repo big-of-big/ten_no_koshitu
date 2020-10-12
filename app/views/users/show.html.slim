@@ -1,4 +1,9 @@
-= @user.name
+h4
+  | #{@user.name} （ 天鳳アカウント：#{@user.tenhou_account} ）
 
-- @user.text_logs.each do |log|
-  p = log
+- @user.my_games.each do |game|
+  p = game
+
+- @user.scores.each do |score|
+  p = score
+
