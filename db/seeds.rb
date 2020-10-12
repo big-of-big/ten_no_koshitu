@@ -15,4 +15,6 @@ end
 
 if Rails.env == "development"
   Log.create!(private_room_log(Time.new(2020,10,10)))
+  # プレーヤー名に"\r\n"を含むログ
+  Log.create!(private_room_log(Time.new(2020,10,12)))
 end

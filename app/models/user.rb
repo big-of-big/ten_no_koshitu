@@ -15,6 +15,8 @@ class User < ApplicationRecord
     result
   end
 
+  # ログを1ゲームごとに分けて配列にする処理
+  # プレーヤー名に"\r\n"が含まれていてもエスケープしてくれる
   def text_logs
     text_content = Log.last.content
     text_content.split("\r\n")
