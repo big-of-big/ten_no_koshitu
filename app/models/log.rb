@@ -3,7 +3,6 @@ require 'zlib'
 
 class Log < ApplicationRecord
   validates :name, uniqueness: true
-
   def self.private_room_log
     yesterday = Time.current.yesterday
     file_time_format = yesterday.strftime("%Y%m%d")

@@ -10,7 +10,6 @@ def private_room_log(date)
   Zlib::GzipReader.open(yesterday_log) {|gz|
     log = gz.read
   }
-
   {name: file_time_format, content: log}
 end
 

@@ -6,19 +6,18 @@ class User < ApplicationRecord
 
   # deviseのメソッドをオーバーライドして、パスワード無しでユーザー情報を編集できるようにする
   def update_with_password(params)
-
     if params[:password].blank?
       params.delete(:password)
       params.delete(:password_confirmation) if params[:password_confirmation].blank?
     end
-
     result = update(params)
-
     clean_up_passwords
     result
   end
 
-  def self.hello
-    puts "hello world"
+  def text_logs
+    text_content = Log.last.content
+    text_content.split("\r\n")
   end
 end
+
