@@ -30,11 +30,23 @@ class User < ApplicationRecord
   end
 
   # 4・3人打ち合算の得点を出す
-  def scores
-    my_games.map do |my_game|
-      m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
-      m[:score]
-    end
+  def make_score_array
+    # 自分の得点の配列を作る
+    scores =
+      my_games.map do |my_game|
+        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+        m[:score].to_i
+      end
+    scores
+  end
+
+  def display_score
+    total_score = make_score_array.sum
+    total_score >= 0 ? "+#{total_score}" : total_score
+  end
+
+  def total_game_count
+    make_score_array.count
   end
 end
 
