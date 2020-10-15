@@ -1,18 +1,34 @@
 class TenhouAccountsController < ApplicationController
   before_action :set_team, only: %i[show edit update destory]
   def index
+    @tenhou_accounts = TenhouAccount.all
   end
 
   def show
   end
 
+  def new
+    @tenhou_account = TenhouAccount.new
+  end
+
+  def create
+    tenhou_account = TenhouAccount.new(tenhou_account_params)
+    tenhou_account.team = current_user.team
+
+    if tenhou_account.save
+      redirect_to root_path, notice: "チームにメンバーを追加しました"
+    else
+      render :new
+    end
+  end
+
   private
-    def set_team
+    def set_tenhou_account
       @user = Team.find(params[:id])
     end
 
-    def user_params
-      params.require(:user).permit(:name, :tenhou_account, :email, :picture)
+    def tenhou_account_params
+      params.require(:tenhou_account).permit(:name)
     end
 
     def ensure_correct_user

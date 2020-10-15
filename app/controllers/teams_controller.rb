@@ -10,12 +10,21 @@ class TeamsController < ApplicationController
 
   def create
     team = Team.new(team_params)
+    current_user.team = team
     team.join_key = team.object_id
 
-    if team.save
+    if team.save && current_user.save
       redirect_to root_path, notice: "チームを作成しました"
     else
       render :new
+    end
+  end
+
+  def update
+    if @team.update(team_params)
+      redirect_to root_path, notice: "チーム情報を更新しました"
+    else
+      render :edit
     end
   end
 

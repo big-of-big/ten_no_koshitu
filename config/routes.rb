@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'tenhou_accounts/index'
-  get 'tenhou_accounts/show'
   authenticated :user do
     root to: "users#index"
   end
@@ -20,7 +18,7 @@ Rails.application.routes.draw do
 
   # ユーザー作成はdeviseで行う
   resources :users, except: %i[new create]
-
+  resources :tenhou_accounts
   resources :teams, only: %i[new edit create update]
   get "teams/join", to: "teams/joins#index"
   get "teams/join", to: "teams/joins#new"

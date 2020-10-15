@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destory]
 
   def index
+    @tenhou_accounts = TenhouAccount.all
   end
 
   def show

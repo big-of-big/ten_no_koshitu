@@ -1,4 +1,9 @@
-h1
-  | Users#index
-= link_to "チーム作成", new_team_path, class: "ml-2"
+- if current_user.team.present?
+  h2
+    | #{current_user.team.name}の成績
+  - @tenhou_accounts.each do |tenhou_account|
+    p = tenhou_account.name
+  = link_to "チーム設定", edit_team_path(current_user.team)
+- else
+  = link_to "チーム作成", new_team_path, class: "ml-2"
 
