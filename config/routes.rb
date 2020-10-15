@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tenhou_accounts/index'
+  get 'tenhou_accounts/show'
   authenticated :user do
     root to: "users#index"
   end

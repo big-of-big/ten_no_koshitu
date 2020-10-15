@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 2020_10_15_043428) do
 
   create_table "tenhou_accounts", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "team_id"], name: "index_tenhou_accounts_on_name_and_team_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

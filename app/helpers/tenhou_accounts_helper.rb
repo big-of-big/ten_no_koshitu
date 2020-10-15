@@ -1,0 +1,2 @@
+module TenhouAccountsHelper
+end
