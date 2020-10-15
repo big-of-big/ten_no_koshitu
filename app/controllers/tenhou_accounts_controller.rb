@@ -1,5 +1,5 @@
 class TenhouAccountsController < ApplicationController
-  before_action :set_team, only: %i[show edit update destory]
+  before_action :set_tenhou_account, only: %i[show edit update destroy]
   def index
     @tenhou_accounts = TenhouAccount.all
   end
@@ -22,9 +22,14 @@ class TenhouAccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @tenhou_account.destroy
+    redirect_to root_path, notice: "メンバーを削除しました。"
+  end
+
   private
     def set_tenhou_account
-      @user = Team.find(params[:id])
+      @tenhou_account = TenhouAccount.find(params[:id])
     end
 
     def tenhou_account_params
