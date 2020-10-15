@@ -1,2 +1,10 @@
-h1 Teams#new
-p Find me in app/views/teams/new.html.slim
+h2
+  | チーム作成
+= form_with model: @team, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: "form-control"
+  .form-group
+    = f.label :image
+    = f.file_field :image, class: "form-control-file"
+  = f.submit "新規作成", class: "btn btn-primary mb-3"
