@@ -1,5 +1,7 @@
 class TenhouAccountsController < ApplicationController
   before_action :set_tenhou_account, only: %i[show edit update destroy]
+  before_action :authenciate_team_member, only: %i[show edit destory]
+
   def index
     @tenhou_accounts = TenhouAccount.all
   end
@@ -9,6 +11,9 @@ class TenhouAccountsController < ApplicationController
 
   def new
     @tenhou_account = TenhouAccount.new
+  end
+
+  def edit
   end
 
   def create
@@ -36,9 +41,9 @@ class TenhouAccountsController < ApplicationController
       params.require(:tenhou_account).permit(:name)
     end
 
-    def ensure_correct_user
-      if @book.user_id != current_user.id
-        redirect_to root_path, notice: t(".flash_no_authority")
+    def authenciate_team_member
+      if @tenhou_account.team != current_user.team
+        redirect_to root_path, notice: "権限がありません"
       end
     end
 end

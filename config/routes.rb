@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "teams/join", to: "teams/joins#index"
   get "teams/join", to: "teams/joins#new"
   post "teams/join", to: "teams/joins#create"
+  delete "teams/join", to: "teams/joins#destroy"
   get "teams/invite", to: "teams/invites#new"
   post "teams/invite", to: "teams/invites#create"
   get 'logs/index'

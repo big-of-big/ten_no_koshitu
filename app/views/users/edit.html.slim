@@ -27,3 +27,4 @@ h2
   = link_to "ホーム", root_path,class:"mr-2"
   span|
   = link_to "チーム設定", root_path, class: "ml-2"
+  = link_to "#{current_user.team.name}から脱退する", teams_join_path,method: :delete,  class: "ml-2"
