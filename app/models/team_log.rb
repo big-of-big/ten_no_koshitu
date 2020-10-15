@@ -1,0 +1,2 @@
+class TeamLog < ApplicationRecord
+end
