@@ -1,0 +1,2 @@
+module Teams::LogsHelper
+end

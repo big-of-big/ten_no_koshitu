@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   delete "teams/join", to: "teams/joins#destroy"
   get "teams/invite", to: "teams/invites#new"
   post "teams/invite", to: "teams/invites#create"
-  get 'logs/index'
+  get "teams/:id/logs", to: "teams/logs#index", as: "team_logs"
 end
