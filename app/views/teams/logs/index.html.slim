@@ -1,6 +1,11 @@
 - if @team_logs.present?
-  - @team_logs.each do |team_log|
-    p = team_log
+  .card
+    - @team_logs.each do |log|
+      .card-header
+       = log[:name]
+      .card-body
+        - log[:content].each do |one_game|
+          p.card-text = one_game
 - else
   p
     | ログがありません
