@@ -1,6 +1,6 @@
 class TenhouAccountsController < ApplicationController
   before_action :set_tenhou_account, only: %i[show edit update destroy]
-  before_action :authenciate_team_member, only: %i[show edit destory]
+  before_action :authenciate_team_member, only: %i[show edit update destroy]
 
   def index
     @tenhou_accounts = TenhouAccount.all
@@ -24,6 +24,14 @@ class TenhouAccountsController < ApplicationController
       redirect_to root_path, notice: "チームにメンバーを追加しました"
     else
       render :new
+    end
+  end
+
+  def update
+    if @tenhou_account.update(tenhou_account_params)
+      redirect_to edit_team_path(@tenhou_account.team), notice: "天鳳アカウントを変更しました"
+    else
+      render :edit
     end
   end
 
