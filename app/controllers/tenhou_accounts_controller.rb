@@ -7,6 +7,23 @@ class TenhouAccountsController < ApplicationController
   end
 
   def show
+    team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
+    ary =
+      team_logs.map do |team_log|
+        JSON.parse(team_log.content)
+      end
+    @logs =
+      ary.flatten!.select do |game|
+        game.include?(@tenhou_account.name)
+    end
+
+    @total_scores =
+      @logs.map do |my_game|
+        m = /#{@tenhou_account.name}\((?<score>.+?)\)/.match(my_game)
+        m[:score].to_i
+      end
+
+    # total_score >= 0 ? "+#{total_score}" : total_score
   end
 
   def new

@@ -1,1 +1,6 @@
 h2 = @tenhou_account.name
+p
+  | 対戦数 #{@total_scores.count}
+  |  合計得点 #{@total_scores.sum}
+- @logs.each do |log|
+  p = log
