@@ -52,6 +52,7 @@ class Log < ApplicationRecord
     ary.shift(6) # ログから不要な部分を削除
     names =
       ary.map do |game|
+        # 天鳳アカウント名に()を含むことはできない
         m = /(?<name>.+)\(/.match(game)
         m[:name]
       end

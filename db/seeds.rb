@@ -10,10 +10,10 @@ def private_room_log(date)
   Zlib::GzipReader.open(yesterday_log) {|gz|
     log = gz.read
   }
-  {name: file_time_format, content: log}
+  {name: date.strftime("%Y/%m/%d"), content: log}
 end
 
 if Rails.env == "development"
-  # Log.create!(private_room_log(Time.new(2020,10,10)))
+  Log.create!(private_room_log(Time.new(2020,10,10)))
   Log.create!(private_room_log(Time.new(2020,10,15)))
 end

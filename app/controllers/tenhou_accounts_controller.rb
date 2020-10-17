@@ -19,7 +19,7 @@ class TenhouAccountsController < ApplicationController
 
     @total_scores =
       @logs.map do |my_game|
-        m = /#{@tenhou_account.name}\((?<score>.+?)\)/.match(my_game)
+        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(my_game)
         m[:score].to_i
       end
 
