@@ -31,7 +31,9 @@ class Log < ApplicationRecord
           games.select do |game|
             (team_tenhou_accounts & extract_tenhou_accounts_from(game)).sort! == extract_tenhou_accounts_from(game).sort!
             end
-        TeamLog.create!(name:Log.last.name, content:"#{team_logs}",team_id: team.id )
+        unless team_logs.empty?
+          TeamLog.create!(name:Log.last.name, content:"#{team_logs}",team_id: team.id )
+        end
       end
     end
 
