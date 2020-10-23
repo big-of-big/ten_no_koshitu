@@ -21,10 +21,11 @@ h2
     = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
   = f.submit "保存", class: "btn btn-primary mb-3 px-5"
-= link_to 'ログアウト', logout_path, method: :delete, class: "btn btn-secondary mb-3"
-= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "btn btn-danger mb-3 mx-3"
+= button_to 'ログアウト', logout_path, method: :delete, class: "btn btn-secondary mb-3"
+= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "btn btn-danger mb-3"
 .mb-3
   = link_to "ホーム", root_path,class:"mr-2"
-  span|
-  = link_to "チーム設定", root_path, class: "ml-2"
-  = link_to "#{current_user.team.name}から脱退する", teams_join_path,method: :delete,  class: "ml-2"
+  - if current_user.team.present?
+    span|
+    = link_to "チーム設定", root_path, class: "ml-2"
+    = button_to "#{current_user.team.name}から脱退する", teams_join_path,method: :delete,  class: "btn btn-secondary ml-2"
