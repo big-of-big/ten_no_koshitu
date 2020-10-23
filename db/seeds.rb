@@ -1,13 +1,14 @@
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 def private_room_log(date)
+  # ログのURLは2パターンある
   file_time_format = date.strftime("%Y%m%d")
-  yesterday_log = URI.open "https://tenhou.net/sc/raw/dat/sca#{file_time_format}.log.gz"
+  begin
+    tempfile = URI.open "https://tenhou.net/sc/raw/dat/sca#{file_time_format}.log.gz"
+  rescue
+    tempfile = URI.open "https://tenhou.net/sc/raw/dat/2020/sca#{file_time_format}.log.gz"
+  end
 
   log = ""
-  Zlib::GzipReader.open(yesterday_log) {|gz|
+  Zlib::GzipReader.open(tempfile) {|gz|
     log = gz.read
   }
   {name: date.strftime("%Y/%m/%d"), content: log}
