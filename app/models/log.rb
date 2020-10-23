@@ -16,7 +16,7 @@ class Log < ApplicationRecord
       log = gz.read
     }
 
-    {name: file_time_format, content: log}
+    {name: yesterday.strftime("%Y/%m/%d"), content: log}
   end
 
   private
