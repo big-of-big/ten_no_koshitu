@@ -28,4 +28,4 @@ h2
   - if current_user.team.present?
     span|
     = link_to "チーム設定", root_path, class: "ml-2"
-    = button_to "#{current_user.team.name}から脱退する", teams_join_path,method: :delete,  class: "btn btn-secondary ml-2"
+    = button_to "#{current_user.team.name}から脱退する", teams_join_path,method: :delete,  class: "btn btn-secondary"

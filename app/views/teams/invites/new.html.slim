@@ -1,0 +1,9 @@
+h2 チームへ招待
+p
+  | #{current_user.team.name}のチームID: #{current_user.team.join_key}
+
+p
+  | チームIDをチームに入りたい人に教えてあげましょう。
+p
+  | その人がチームIDを入力することでチームに参加できます。
+= link_to "トップページへ戻る", root_path
