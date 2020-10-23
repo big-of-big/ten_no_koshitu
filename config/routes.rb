@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   resources :users, except: %i[new create]
   resources :tenhou_accounts
   resources :teams, only: %i[new edit create update]
-  get "teams/join", to: "teams/joins#index"
-  get "teams/join", to: "teams/joins#new"
+  get "teams/join", to: "teams/joins#new", as: "new_team_join"
   post "teams/join", to: "teams/joins#create"
   delete "teams/join", to: "teams/joins#destroy"
   get "teams/invite", to: "teams/invites#new"
