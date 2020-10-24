@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    # @four_gameo
   end
 
   def edit

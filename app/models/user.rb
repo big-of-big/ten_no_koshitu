@@ -73,6 +73,36 @@ class User < ApplicationRecord
     scores
   end
 
+  def distinguish_four_game_from_three_game(games)
+    hash = { four_games: [], three_games: [] }
+    games.each do |game|
+      ary = game.split(" ")
+
+      if ary.count == 10 ## 4人打ち
+        hash[:four_games] << game
+      else ## 3人打ち
+        hash[:three_games] << game
+      end
+    end
+    hash
+  end
+
+  # 自分の4人打ち・3人打ちの得点を配列で持つハッシュを作る
+  def score_hash
+    game_hash = distinguish_four_game_from_three_game(my_games)
+    four_game_scores =
+      game_hash[:four_games].map do |game|
+        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+        m[:score].to_i
+      end
+    three_game_scores =
+      game_hash[:three_games].map do |game|
+        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+        m[:score].to_i
+      end
+    {four_game_scores: four_game_scores, three_game_scores: three_game_scores}
+  end
+
   def display_score
     total_score = make_score_array.sum
     total_score >= 0 ? "+#{total_score}" : total_score
@@ -83,3 +113,4 @@ class User < ApplicationRecord
   end
 end
 
+# | 総合成績: #{@user.total_game_count}戦 #{@user.display_score}

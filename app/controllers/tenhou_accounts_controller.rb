@@ -12,18 +12,19 @@ class TenhouAccountsController < ApplicationController
       team_logs.map do |team_log|
         JSON.parse(team_log.content)
       end
+    # ユーザーの打った試合のログ
     @logs =
       ary.flatten!.select do |game|
-        game.include?(@tenhou_account.name)
-    end
+        tenhou_accounts_names = extract_tenhou_accounts_from(game)
+        tenhou_accounts_names.include?(@tenhou_account.name)
+        # game => "L1412 | 20:50 | 四般東喰赤－ | フレアドライブ(+50.0) コロナビーム！！(+2.0) モラルハザード(-21.0) crepe(-31.0)"
+      end
 
     @total_scores =
       @logs.map do |my_game|
         m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(my_game)
         m[:score].to_i
       end
-
-    # total_score >= 0 ? "+#{total_score}" : total_score
   end
 
   def new
@@ -70,5 +71,17 @@ class TenhouAccountsController < ApplicationController
       if @tenhou_account.team != current_user.team
         redirect_to root_path, notice: "権限がありません"
       end
+    end
+
+    def extract_tenhou_accounts_from(game)
+      ary = game.split(" ")
+      ary.shift(6) # ログから不要な部分を削除
+      names =
+        ary.map do |game|
+          # 天鳳アカウント名に()を含むことはできない
+          m = /(?<name>.+)\(/.match(game)
+          m[:name]
+        end
+      names
     end
 end

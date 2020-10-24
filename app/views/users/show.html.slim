@@ -2,7 +2,7 @@ h4
   | #{@user.name} （ 天鳳アカウント：#{@user.tenhou_account} ）
   /- binding.pry
 h4
-  | 総合成績 #{@user.total_game_count}戦 #{@user.display_score}
+  | 総合成績: #{@user.total_game_count}戦 #{@user.display_score}
 
 - @user.my_games.each do |game|
   p = game

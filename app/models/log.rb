@@ -40,10 +40,10 @@ class Log < ApplicationRecord
   # チームメンバー全員の名前の配列を作る
   def team_members(team)
     return if team.tenhou_accounts.empty?
-    hoge = team.tenhou_accounts.map do |tenhou_account|
+    tenhou_names = team.tenhou_accounts.map do |tenhou_account|
         tenhou_account.name
       end
-    hoge
+    tenhou_names
   end
 
   # 1つのログから天鳳アカウント名だけ抜き出し配列にする
