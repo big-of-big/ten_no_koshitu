@@ -1,3 +1,8 @@
+- if @tenhou_account.errors.any?
+  .alert.alert-danger
+    - @tenhou_account.errors.full_messages.each do |msg|
+     li.mb-0 = msg
+
 h2
   | アカウント名変更
 = form_with model: @tenhou_account, local: true do |f|
