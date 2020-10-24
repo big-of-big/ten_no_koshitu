@@ -59,10 +59,13 @@ class Log < ApplicationRecord
     names
   end
 
-  # 自分が打った試合のみの配列を返す
+  # 自分が打った試合の配列を返す
   def my_games
+    # game => "L6660 | 09:36 | 四般南喰－－ | COO007(+64.0) natscame(+4.0) i505(-25.0) ホップステップ(-43.0)"
     games.select do |game|
-      game.include?(self.tenhou_account)
+      # ["hoge","guga","huba"]
+      tenhou_accounts_names = extract_tenhou_accounts_from(game)
+      tenhou_accounts_names.include?(self.tenhou_account)
     end
   end
 

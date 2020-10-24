@@ -18,15 +18,33 @@ class User < ApplicationRecord
 
   # ログを1ゲームごとに分けて配列にする処理
   # プレーヤー名に"\r\n"が含まれていてもエスケープしてくれる
+  # ["L6660 | 15:41 | 四般南喰－－ | i505(+108.0) natscame(-11.0) ホップステップ(-43.0) COO007(-54.0)",
+  #  "L6789 | 14:33 | 三般南喰赤－ | エト:オルタ(+50.0) nica*゜(+4.0) -Archer-(-54.0)",
+  #  "L6789 | 14:51 | 三般南喰赤－ | nica*゜(+66.0) エト:オルタ(-11.0) -Archer-(-55.0)"]
   def games
     text_content = Log.first.content
     text_content.split("\r\n")
   end
 
+  def extract_tenhou_accounts_from(game)
+    ary = game.split(" ")
+    ary.shift(6) # ログから不要な部分(部屋番号や時間など)を削除
+    names =
+      ary.map do |game|
+        # 天鳳アカウント名に()を含むことはできない
+        m = /(?<name>.+)\(/.match(game)
+        m[:name]
+      end
+    names
+  end
+
   # 自分が打った試合のみの配列を返す
   def my_games
+    # game => "L6660 | 09:36 | 四般南喰－－ | COO007(+64.0) natscame(+4.0) i505(-25.0) ホップステップ(-43.0)"
     games.select do |game|
-      game.include?(self.tenhou_account)
+      # ["hoge","guga","huba"]
+      tenhou_accounts_names = extract_tenhou_accounts_from(game)
+      tenhou_accounts_names.include?(self.tenhou_account)
     end
   end
 
