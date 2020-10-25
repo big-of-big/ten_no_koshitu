@@ -1,4 +1,5 @@
 module LogsHelper
+
   def extract_tenhou_accounts_from(game)
     ary = game.split(" ")
     ary.shift(6) # ログから不要な部分を削除

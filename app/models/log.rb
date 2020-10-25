@@ -58,34 +58,4 @@ class Log < ApplicationRecord
       end
     names
   end
-
-  # 自分が打った試合の配列を返す
-  def my_games
-    # game => "L6660 | 09:36 | 四般南喰－－ | COO007(+64.0) natscame(+4.0) i505(-25.0) ホップステップ(-43.0)"
-    games.select do |game|
-      # ["hoge","guga","huba"]
-      tenhou_accounts_names = extract_tenhou_accounts_from(game)
-      tenhou_accounts_names.include?(self.tenhou_account)
-    end
-  end
-
-  # 4・3人打ち合算の得点を出す
-  def make_score_array
-    # 自分の得点の配列を作る
-    scores =
-      my_games.map do |my_game|
-        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
-        m[:score].to_i
-      end
-    scores
-  end
-
-  def display_score
-    total_score = make_score_array.sum
-    total_score >= 0 ? "+#{total_score}" : total_score
-  end
-
-  def total_game_count
-    make_score_array.count
-  end
 end
