@@ -1,5 +1,15 @@
 module LogsHelper
 
+  # チームメンバー全員の名前の配列を作る
+  def team_members(team)
+    return if team.tenhou_accounts.empty?
+    tenhou_names = team.tenhou_accounts.map do |tenhou_account|
+        tenhou_account.name
+      end
+    tenhou_names
+  end
+
+  # 1つのログから天鳳アカウント名だけ抜き出し配列にする
   def extract_tenhou_accounts_from(game)
     ary = game.split(" ")
     ary.shift(6) # ログから不要な部分を削除
@@ -41,5 +51,4 @@ module LogsHelper
       end
     {four_game_scores: four_game_scores, three_game_scores: three_game_scores}
   end
-
 end

@@ -2,9 +2,10 @@ require 'open-uri'
 require 'zlib'
 
 class Log < ApplicationRecord
+  include LogsHelper
+
   validates :name, uniqueness: true
   after_create :pass_log_to_team
-
 
   def self.private_room_log
     yesterday = Time.current.yesterday
@@ -36,26 +37,4 @@ class Log < ApplicationRecord
         end
       end
     end
-
-  # チームメンバー全員の名前の配列を作る
-  def team_members(team)
-    return if team.tenhou_accounts.empty?
-    tenhou_names = team.tenhou_accounts.map do |tenhou_account|
-        tenhou_account.name
-      end
-    tenhou_names
-  end
-
-  # 1つのログから天鳳アカウント名だけ抜き出し配列にする
-  def extract_tenhou_accounts_from(game)
-    ary = game.split(" ")
-    ary.shift(6) # ログから不要な部分を削除
-    names =
-      ary.map do |game|
-        # 天鳳アカウント名に()を含むことはできない
-        m = /(?<name>.+)\(/.match(game)
-        m[:name]
-      end
-    names
-  end
 end

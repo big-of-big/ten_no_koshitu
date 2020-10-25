@@ -70,6 +70,7 @@ class TenhouAccountsController < ApplicationController
     end
 
     def authenciate_team_member
+      # binding.pry
       if @tenhou_account.team != current_user.team
         redirect_to root_path, notice: "権限がありません"
       end
