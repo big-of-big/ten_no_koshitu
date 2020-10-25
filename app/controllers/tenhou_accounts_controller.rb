@@ -1,4 +1,5 @@
 class TenhouAccountsController < ApplicationController
+  include LogsHelper
   before_action :set_tenhou_account, only: %i[show edit update destroy]
   before_action :authenciate_team_member, only: %i[show edit update destroy]
 
@@ -8,13 +9,14 @@ class TenhouAccountsController < ApplicationController
 
   def show
     team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
-    ary =
+    # 2次元配列
+    ary_of_games =
       team_logs.map do |team_log|
         JSON.parse(team_log.content)
       end
     # ユーザーの打った試合のログ
     @logs =
-      ary.flatten!.select do |game|
+      ary_of_games.flatten!.select do |game|
         tenhou_accounts_names = extract_tenhou_accounts_from(game)
         tenhou_accounts_names.include?(@tenhou_account.name)
         # game => "L1412 | 20:50 | 四般東喰赤－ | フレアドライブ(+50.0) コロナビーム！！(+2.0) モラルハザード(-21.0) crepe(-31.0)"
@@ -71,17 +73,5 @@ class TenhouAccountsController < ApplicationController
       if @tenhou_account.team != current_user.team
         redirect_to root_path, notice: "権限がありません"
       end
-    end
-
-    def extract_tenhou_accounts_from(game)
-      ary = game.split(" ")
-      ary.shift(6) # ログから不要な部分を削除
-      names =
-        ary.map do |game|
-          # 天鳳アカウント名に()を含むことはできない
-          m = /(?<name>.+)\(/.match(game)
-          m[:name]
-        end
-      names
     end
 end
