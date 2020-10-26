@@ -7,50 +7,46 @@ class TenhouAccountsController < ApplicationController
   #   @tenhou_accounts = TenhouAccount.all
   # end
 
-
   def show
-    # logs = TeamLog.where(team_id: params[:id])
-    # @team_logs = logs.map do |log|
-    #   { name: log.name, content: JSON.parse(log.content) }
-    #   end
-    # def create_game_object(name,game)
-    #   Game.new(name,game)
-    # end
-
     team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
-    games =
+    game_objects =
       team_logs.map do |team_log|
-        create_game_object(team_log.name, team_log.content)
+        Game.new(team_log.name, team_log.content)
       end
 
-    @one_game_objects = []
+    one_game_objects = []
 
-    games.each do |game|
-      JSON.parse(game.content).each do |one_game_log|
-       @one_game_objects << OneGame.new(game.name,one_game_log)
+    game_objects.each do |game_object|
+      JSON.parse(game_object.content).each do |one_game_log|
+       one_game_objects << OneGame.new(game_object.name,one_game_log)
       end
     end
 
-    # 2次元配列
-    # この処理で名前の情報が失われてしまう
-    ary_of_games =
-      team_logs.map do |team_log|
-        JSON.parse(team_log.content)
-      end
-    # ユーザーの打った試合のログ
-
-    @logs =
-      ary_of_games.flatten!.select do |game|
-        tenhou_accounts_names = extract_tenhou_accounts_from(game)
+    @my_one_game_objects =
+      one_game_objects.select do |one_game_object|
+        tenhou_accounts_names = extract_tenhou_accounts_from(one_game_object.one_game_log)
         tenhou_accounts_names.include?(@tenhou_account.name)
-        # game => "L1412 | 20:50 | 四般東喰赤－ | フレアドライブ(+50.0) コロナビーム！！(+2.0) モラルハザード(-21.0) crepe(-31.0)"
       end
 
-    @hash = score_hash(@logs,@tenhou_account.name)
+    @three_games = []
+    @four_games = []
+      @my_one_game_objects.each do |my_one_game_object|
+        if my_one_game_object.type == 3
+          @three_games << my_one_game_object
+        else
+          @four_games << my_one_game_object
+        end
+      end
 
-    @total_scores =
-      @logs.map do |my_game|
-        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(my_game)
+    @four_games_scores =
+      @four_games.map do |four_game|
+        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(four_game.one_game_log)
+        m[:score].to_i
+      end
+
+    @three_games_scores =
+      @three_games.map do |three_game|
+        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(three_game.one_game_log)
         m[:score].to_i
       end
   end

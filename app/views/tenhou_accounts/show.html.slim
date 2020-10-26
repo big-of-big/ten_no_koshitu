@@ -1,15 +1,14 @@
 h2 = @tenhou_account.name
 p
-  | 対戦数 #{@total_scores.count}
-  |  合計得点 #{@total_scores.sum}
+  | 対戦数 #{@my_one_game_objects.count}
+  |  合計得点 #{(@four_games_scores + @three_games_scores).sum}
 p
-  | 四人打ち #{@hash[:four_game_scores].count}戦 #{@hash[:four_game_scores].sum}
+  | 四人打ち #{@four_games_scores.count}戦 #{@four_games_scores.sum}
 p
-  | 三人打ち  #{@hash[:three_game_scores].count}戦 #{@hash[:three_game_scores].sum}
+  | 三人打ち #{@three_games_scores.count}戦 #{@three_games_scores.sum}
 
-- @one_game_objects.each do |game|
+- @my_one_game_objects.each do |game|
   .card
     .card-body
       p
-        | #{game.name}  #{game.type}人打ち
-      p = game.one_game_log
+        | #{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}
