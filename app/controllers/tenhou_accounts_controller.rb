@@ -3,24 +3,49 @@ class TenhouAccountsController < ApplicationController
   before_action :set_tenhou_account, only: %i[show edit update destroy]
   before_action :authenciate_team_member, only: %i[show edit update destroy]
 
-  def index
-    @tenhou_accounts = TenhouAccount.all
-  end
+  # def index
+  #   @tenhou_accounts = TenhouAccount.all
+  # end
+
 
   def show
+    # logs = TeamLog.where(team_id: params[:id])
+    # @team_logs = logs.map do |log|
+    #   { name: log.name, content: JSON.parse(log.content) }
+    #   end
+    # def create_game_object(name,game)
+    #   Game.new(name,game)
+    # end
+
     team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
+    games =
+      team_logs.map do |team_log|
+        create_game_object(team_log.name, team_log.content)
+      end
+
+    @one_game_objects = []
+
+    games.each do |game|
+      JSON.parse(game.content).each do |one_game_log|
+       @one_game_objects << OneGame.new(game.name,one_game_log)
+      end
+    end
+
     # 2次元配列
+    # この処理で名前の情報が失われてしまう
     ary_of_games =
       team_logs.map do |team_log|
         JSON.parse(team_log.content)
       end
     # ユーザーの打った試合のログ
+
     @logs =
       ary_of_games.flatten!.select do |game|
         tenhou_accounts_names = extract_tenhou_accounts_from(game)
         tenhou_accounts_names.include?(@tenhou_account.name)
         # game => "L1412 | 20:50 | 四般東喰赤－ | フレアドライブ(+50.0) コロナビーム！！(+2.0) モラルハザード(-21.0) crepe(-31.0)"
       end
+
     @hash = score_hash(@logs,@tenhou_account.name)
 
     @total_scores =
@@ -71,7 +96,6 @@ class TenhouAccountsController < ApplicationController
     end
 
     def authenciate_team_member
-      # binding.pry
       if @tenhou_account.team != current_user.team
         redirect_to root_path, notice: "権限がありません"
       end

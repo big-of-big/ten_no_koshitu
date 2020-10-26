@@ -22,6 +22,23 @@ module LogsHelper
     names
   end
 
+  # def distinguish_four_game_from_three_game(games)
+  #   hash = { four_games: [], three_games: [] }
+  #   games.each do |game|
+  #     ary = game.split(" ")
+  #
+  #     if ary.count == 10 ## 4人打ち
+  #       hash[:four_games] << game
+  #     else ## 3人打ち
+  #       hash[:three_games] << game
+  #     end
+  #   end
+  #   hash
+  # end
+  def create_game_object(name,game)
+    Game.new(name,game)
+  end
+
   def distinguish_four_game_from_three_game(games)
     hash = { four_games: [], three_games: [] }
     games.each do |game|

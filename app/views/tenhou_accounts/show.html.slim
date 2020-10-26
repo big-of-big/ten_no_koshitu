@@ -6,7 +6,10 @@ p
   | 四人打ち #{@hash[:four_game_scores].count}戦 #{@hash[:four_game_scores].sum}
 p
   | 三人打ち  #{@hash[:three_game_scores].count}戦 #{@hash[:three_game_scores].sum}
-h3
-  | #{@tenhou_account.name}の対戦記録
-- @logs.each do |log|
-  p = log
+
+- @one_game_objects.each do |game|
+  .card
+    .card-body
+      p
+        | #{game.name}  #{game.type}人打ち
+      p = game.one_game_log
