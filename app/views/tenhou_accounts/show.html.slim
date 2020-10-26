@@ -2,5 +2,11 @@ h2 = @tenhou_account.name
 p
   | 対戦数 #{@total_scores.count}
   |  合計得点 #{@total_scores.sum}
+p
+  | 四人打ち #{@hash[:four_game_scores].count}戦 #{@hash[:four_game_scores].sum}
+p
+  | 三人打ち  #{@hash[:three_game_scores].count}戦 #{@hash[:three_game_scores].sum}
+h3
+  | #{@tenhou_account.name}の対戦記録
 - @logs.each do |log|
   p = log

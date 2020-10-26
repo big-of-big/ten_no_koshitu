@@ -37,16 +37,16 @@ module LogsHelper
   end
 
   # 自分の4人打ち・3人打ちの得点を配列で持つハッシュを作る
-  def score_hash
-    game_hash = distinguish_four_game_from_three_game(my_games)
+  def score_hash(games,tenhou_account_name)
+    game_hash = distinguish_four_game_from_three_game(games)
     four_game_scores =
       game_hash[:four_games].map do |game|
-        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+        m = /#{Regexp.escape(tenhou_account_name)}\((?<score>.+?)\)/.match(game)
         m[:score].to_i
       end
     three_game_scores =
       game_hash[:three_games].map do |game|
-        m = /#{tenhou_account}\((?<score>.+?)\)/.match(my_game)
+        m = /#{Regexp.escape(tenhou_account_name)}\((?<score>.+?)\)/.match(game)
         m[:score].to_i
       end
     {four_game_scores: four_game_scores, three_game_scores: three_game_scores}

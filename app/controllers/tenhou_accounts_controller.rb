@@ -21,6 +21,7 @@ class TenhouAccountsController < ApplicationController
         tenhou_accounts_names.include?(@tenhou_account.name)
         # game => "L1412 | 20:50 | 四般東喰赤－ | フレアドライブ(+50.0) コロナビーム！！(+2.0) モラルハザード(-21.0) crepe(-31.0)"
       end
+    @hash = score_hash(@logs,@tenhou_account.name)
 
     @total_scores =
       @logs.map do |my_game|
