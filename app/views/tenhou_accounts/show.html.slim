@@ -58,8 +58,26 @@ p
             p.card-text
               = (@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2)
 h3
-  | 対戦記録
-- @my_one_game_objects.each do |game|
+  | 月別の成績
+- @four_games_hash.each do |month,games|
   .card
-    .card-body
-        =  "#{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}"
+    h4.card-title = month
+    - four_games_scores = scores(games, @tenhou_account.name)
+    - four_games_rankings = rankings(games, @tenhou_account.name)
+    p.card-text
+      | 4人打ち | 合計得点 #{four_games_scores.sum}  | 平均順位 #{(four_games_rankings.sum(0.0) / four_games_rankings.count).round(2)} | 対戦数 #{four_games_scores.count}
+
+- @three_games_hash.each do |month,games|
+  .card
+    h4.card-title = month
+    - three_games_scores = scores(games, @tenhou_account.name)
+    - three_games_rankings = rankings(games, @tenhou_account.name)
+    p.card-text
+      | 3人打ち | 合計得点 #{three_games_scores.sum}  | 平均順位 #{(three_games_rankings.sum(0.0) / three_games_rankings.count).round(2)} | 対戦数 #{three_games_scores.count}
+
+/h3
+/  | 対戦記録
+/- @my_one_game_objects.each do |game|
+/  .card
+/    .card-body
+/        =  "#{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}"

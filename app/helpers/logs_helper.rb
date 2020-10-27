@@ -21,4 +21,18 @@ module LogsHelper
       end
     names
   end
+
+  def scores(games,tenhou_account_name)
+    games.map do |game|
+      m = /#{Regexp.escape(tenhou_account_name)}\((?<score>.+?)\)/.match(game.one_game_log)
+      m[:score].to_i
+    end
+  end
+
+  def rankings(games, tenhou_account_name)
+    games.map do |game|
+      tenhou_accounts_names = extract_tenhou_accounts_from(game.one_game_log)
+      tenhou_accounts_names.index(tenhou_account_name) + 1
+    end
+  end
 end

@@ -8,6 +8,7 @@ class TenhouAccountsController < ApplicationController
   # end
 
   def show
+    # 全期間のTeamLogオブジェクトを取得している
     team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
     game_objects =
       team_logs.map do |team_log|
@@ -28,6 +29,8 @@ class TenhouAccountsController < ApplicationController
         tenhou_accounts_names.include?(@tenhou_account.name)
       end
 
+    # この配列に全期間の3人打ちと4人打ちのgame_objectが格納されている
+    # この配列は必要。この配列から月別にまとめられる？
     @three_games = []
     @four_games = []
       @my_one_game_objects.each do |my_one_game_object|
@@ -38,29 +41,36 @@ class TenhouAccountsController < ApplicationController
         end
       end
 
-    @four_games_scores =
-      @four_games.map do |four_game|
-        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(four_game.one_game_log)
-        m[:score].to_i
+    # @three_games_hash = { 2020/02:[game,game], 2020/03: [game,game,game]] }
+    # 月別のgameオブジェクトが入ったハッシュ
+    @three_games_hash = { }
+    @three_games.each do |game|
+      unless @three_games_hash.has_key?(game.year_month)
+        @three_games_hash[game.year_month] = []
       end
+      @three_games_hash[game.year_month] << game
+    end
 
-    @three_games_scores =
-      @three_games.map do |three_game|
-        m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(three_game.one_game_log)
-        m[:score].to_i
+    @four_games_hash = { }
+    @four_games.each do |game|
+      unless @four_games_hash.has_key?(game.year_month)
+        @four_games_hash[game.year_month] = []
       end
+      @four_games_hash[game.year_month] << game
+    end
 
-    @four_games_rankings =
-      @four_games.map do |four_game|
-        tenhou_accounts_names = extract_tenhou_accounts_from(four_game.one_game_log)
-        tenhou_accounts_names.index(@tenhou_account.name) + 1
-      end
+    # 4人打ちの全期間の得点が入った配列
+    @four_games_scores = scores(@four_games, @tenhou_account.name)
 
-    @three_games_rankings =
-      @three_games.map do |three_game|
-        tenhou_accounts_names = extract_tenhou_accounts_from(three_game.one_game_log)
-        tenhou_accounts_names.index(@tenhou_account.name) + 1
-      end
+    # 3人打ちの全期間の得点が入った配列
+    @three_games_scores = scores(@three_games, @tenhou_account.name)
+
+    # 4人打ちの全期間の順位が入った配列
+    @four_games_rankings = rankings(@four_games, @tenhou_account.name)
+
+    # 3人打ちの全期間の順位が入った配列
+    @three_games_rankings = rankings(@three_games, @tenhou_account.name)
+
   end
 
   def new
