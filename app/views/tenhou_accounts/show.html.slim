@@ -3,10 +3,21 @@ p
   | 対戦数 #{@my_one_game_objects.count}
   |  合計得点 #{(@four_games_scores + @three_games_scores).sum}
 p
-  | 四人打ち #{@four_games_scores.count}戦 #{@four_games_scores.sum}
+  | 4人打ち
 p
-  | 三人打ち #{@three_games_scores.count}戦 #{@three_games_scores.sum}
-
+  | 合計得点 #{@four_games_scores.sum}
+p
+  | 対戦数 #{@four_games_scores.count}
+p
+  | 平均順位 #{(@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2) }
+p
+  | 3人打ち
+p
+  | 合計得点 #{@three_games_scores.sum}
+p
+  | 平均順位 #{(@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2) }
+p
+  | 対戦数 #{@three_games_scores.count}
 - @my_one_game_objects.each do |game|
   .card
     .card-body

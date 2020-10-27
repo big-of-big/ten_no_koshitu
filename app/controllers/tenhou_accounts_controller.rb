@@ -49,6 +49,18 @@ class TenhouAccountsController < ApplicationController
         m = /#{Regexp.escape(@tenhou_account.name)}\((?<score>.+?)\)/.match(three_game.one_game_log)
         m[:score].to_i
       end
+
+    @four_games_rankings =
+      @four_games.map do |four_game|
+        tenhou_accounts_names = extract_tenhou_accounts_from(four_game.one_game_log)
+        tenhou_accounts_names.index(@tenhou_account.name) + 1
+      end
+
+    @three_games_rankings =
+      @three_games.map do |three_game|
+        tenhou_accounts_names = extract_tenhou_accounts_from(three_game.one_game_log)
+        tenhou_accounts_names.index(@tenhou_account.name) + 1
+      end
   end
 
   def new
