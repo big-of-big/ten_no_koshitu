@@ -36,8 +36,21 @@ class OneGame
 end
 
 class OneMonthGames
-  def initialize(name,games)
+  attr_accessor :name,:games, :four_games, :three_games
+  def initialize(name, games)
     @name = name
-    @game = games
+    @three_games = []
+    @four_games = []
+    divide_three_and_four_of(games)
+  end
+
+  def divide_three_and_four_of(games)
+    games.each do |my_one_game_object|
+      if my_one_game_object.type == 3
+        @three_games << my_one_game_object
+      else
+        @four_games << my_one_game_object
+      end
+    end
   end
 end

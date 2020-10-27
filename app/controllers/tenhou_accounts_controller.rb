@@ -23,6 +23,7 @@ class TenhouAccountsController < ApplicationController
       end
     end
 
+    # 全期間の4人打ちと3人打ちが混じった配列
     @my_one_game_objects =
       one_game_objects.select do |one_game_object|
         tenhou_accounts_names = extract_tenhou_accounts_from(one_game_object.one_game_log)
@@ -58,6 +59,21 @@ class TenhouAccountsController < ApplicationController
       end
       @four_games_hash[game.year_month] << game
     end
+
+
+    # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
+    all_games_hash = {}
+    @my_one_game_objects.each do |game|
+      unless all_games_hash.has_key?(game.year_month)
+        all_games_hash[game.year_month] = []
+      end
+      all_games_hash[game.year_month] << game
+    end
+
+    @one_month_games =
+      all_games_hash.map do |name, games|
+        OneMonthGames.new(name,games)
+      end
 
     # 4人打ちの全期間の得点が入った配列
     @four_games_scores = scores(@four_games, @tenhou_account.name)

@@ -1,5 +1,5 @@
 h2 = @tenhou_account.name
-p
+h3
   | 対戦数 #{@my_one_game_objects.count}
   |  合計得点 #{(@four_games_scores + @three_games_scores).sum}
 - unless @four_games_scores.present?
@@ -20,15 +20,15 @@ p
         .col-sm-4
           .card
             p.card-text
-              | 対戦数
-            p.card-text
-              = @four_games_scores.count
-        .col-sm-4
-          .card
-            p.card-text
               | 平均順位
             p.card-text
               = (@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2)
+        .col-sm-4
+          .card
+            p.card-text
+              | 対戦数
+            p.card-text
+              = @four_games_scores.count
 
 - unless @three_games_scores.present?
   p
@@ -48,32 +48,36 @@ p
         .col-sm-4
           .card
             p.card-text
-              | 対戦数
-            p.card-text
-              = @three_games_scores.count
-        .col-sm-4
-          .card
-            p.card-text
               | 平均順位
             p.card-text
               = (@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2)
+        .col-sm-4
+          .card
+            p.card-text
+              | 対戦数
+            p.card-text
+              = @three_games_scores.count
 h3
   | 月別の成績
-- @four_games_hash.each do |month,games|
-  .card
-    h4.card-title = month
-    - four_games_scores = scores(games, @tenhou_account.name)
-    - four_games_rankings = rankings(games, @tenhou_account.name)
-    p.card-text
-      | 4人打ち | 合計得点 #{four_games_scores.sum}  | 平均順位 #{(four_games_rankings.sum(0.0) / four_games_rankings.count).round(2)} | 対戦数 #{four_games_scores.count}
-
-- @three_games_hash.each do |month,games|
-  .card
-    h4.card-title = month
-    - three_games_scores = scores(games, @tenhou_account.name)
-    - three_games_rankings = rankings(games, @tenhou_account.name)
-    p.card-text
-      | 3人打ち | 合計得点 #{three_games_scores.sum}  | 平均順位 #{(three_games_rankings.sum(0.0) / three_games_rankings.count).round(2)} | 対戦数 #{three_games_scores.count}
+- @one_month_games.each do |game|
+    - four_games_scores = scores(game.four_games, @tenhou_account.name)
+    - four_games_rankings = rankings(game.four_games, @tenhou_account.name)
+    - three_games_scores = scores(game.three_games, @tenhou_account.name)
+    - three_games_rankings = rankings(game.three_games, @tenhou_account.name)
+    .card
+      p = game.name
+      - if four_games_scores.empty?
+        p
+          | 4人打ちの記録はありません
+      - else
+        p
+          | 4人打ち | 合計得点 #{four_games_scores.sum}  | 平均順位 #{(four_games_rankings.sum(0.0) / four_games_rankings.count).round(2)} | 対戦数 #{four_games_scores.count}
+      - if three_games_scores.empty?
+        p
+          | 3人打ちの記録はありません
+      - else
+        p
+          | 3人打ち | 合計得点 #{three_games_scores.sum}  | 平均順位 #{(three_games_rankings.sum(0.0) / three_games_rankings.count).round(2)} | 対戦数 #{three_games_scores.count}
 
 /h3
 /  | 対戦記録
