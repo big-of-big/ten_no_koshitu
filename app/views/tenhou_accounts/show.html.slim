@@ -2,24 +2,64 @@ h2 = @tenhou_account.name
 p
   | 対戦数 #{@my_one_game_objects.count}
   |  合計得点 #{(@four_games_scores + @three_games_scores).sum}
-p
-  | 4人打ち
-p
-  | 合計得点 #{@four_games_scores.sum}
-p
-  | 対戦数 #{@four_games_scores.count}
-p
-  | 平均順位 #{(@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2) }
-p
-  | 3人打ち
-p
-  | 合計得点 #{@three_games_scores.sum}
-p
-  | 平均順位 #{(@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2) }
-p
-  | 対戦数 #{@three_games_scores.count}
+- unless @four_games_scores.present?
+  p
+    | 4人打ちの対戦記録はありません
+- else
+  .card.text-center.mb-3
+    .card-header
+      | 4人打ち
+    .card-body
+      .row
+        .col-sm-4
+          .card
+            p.card-text
+              | 合計得点
+            p.card-text
+              = @four_games_scores.sum
+        .col-sm-4
+          .card
+            p.card-text
+              | 対戦数
+            p.card-text
+              = @four_games_scores.count
+        .col-sm-4
+          .card
+            p.card-text
+              | 平均順位
+            p.card-text
+              = (@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2)
+
+- unless @three_games_scores.present?
+  p
+    | 3人打ちの対戦記録はありません
+- else
+  .card.text-center.mb-3
+    .card-header
+      | 3人打ち
+    .card-body
+      .row
+        .col-sm-4
+          .card
+            p.card-text
+              | 合計得点
+            p.card-text
+              = @three_games_scores.sum
+        .col-sm-4
+          .card
+            p.card-text
+              | 対戦数
+            p.card-text
+              = @three_games_scores.count
+        .col-sm-4
+          .card
+            p.card-text
+              | 平均順位
+            p.card-text
+              = (@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2)
+h3
+  | 対戦記録
 - @my_one_game_objects.each do |game|
   .card
     .card-body
-      p
-        | #{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}
+        =  "#{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}"
