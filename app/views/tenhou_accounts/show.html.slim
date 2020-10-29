@@ -61,8 +61,8 @@ h3
               = @three_games_scores.count
 #results
   = "{{message}}"
-  /app(:tenhou_name="#{@tenhou_account.name}")
-  app(v-bind:tenhou_name="hoge")
+  app(tenhou_name="#{@tenhou_account.name}")
+  /app(tenhou_name="hoge")
 
 h3
   | 月別の成績
