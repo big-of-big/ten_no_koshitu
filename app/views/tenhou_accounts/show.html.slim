@@ -63,8 +63,18 @@ h3
   = "{{message}}"
   = "{{name}}"
   app
+
 h3
   | 月別の成績
+= form_with url:results_path, local: true do |f|
+  .form-group
+    = f.label :start_date
+    = f.date_field :start_date, class: "form-control"
+  .form-group
+    = f.label :end_date
+    = f.date_field :end_date, class: "form-control"
+  = f.submit "決定", class: "btn btn-primary"
+
 - @one_month_games.each do |game|
     - four_games_scores = scores(game.four_games, @tenhou_account.name)
     - four_games_rankings = rankings(game.four_games, @tenhou_account.name)

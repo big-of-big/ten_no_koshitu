@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get "teams/invite", to: "teams/invites#new"
   post "teams/invite", to: "teams/invites#create"
   get "teams/:id/logs", to: "teams/logs#index", as: "team_logs"
+  post "api/result", to: "api/results#create", as: "results"
 end
