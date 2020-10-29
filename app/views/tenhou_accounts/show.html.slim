@@ -59,21 +59,21 @@ h3
               | 対戦数
             p.card-text
               = @three_games_scores.count
-#hello
+#results
   = "{{message}}"
-  = "{{name}}"
-  app
+  /app(:tenhou_name="#{@tenhou_account.name}")
+  app(v-bind:tenhou_name="hoge")
 
 h3
   | 月別の成績
-= form_with url:results_path, local: true do |f|
-  .form-group
-    = f.label :start_date
-    = f.date_field :start_date, class: "form-control"
-  .form-group
-    = f.label :end_date
-    = f.date_field :end_date, class: "form-control"
-  = f.submit "決定", class: "btn btn-primary"
+/= form_with url:results_path, local: true do |f|
+/  .form-group
+/    = f.label :start_date
+/    = f.date_field :start_date, class: "form-control"
+/  .form-group
+/    = f.label :end_date
+/    = f.date_field :end_date, class: "form-control"
+/  = f.submit "決定", class: "btn btn-primary"
 
 - @one_month_games.each do |game|
     - four_games_scores = scores(game.four_games, @tenhou_account.name)

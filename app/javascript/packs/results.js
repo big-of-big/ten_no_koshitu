@@ -3,10 +3,9 @@ import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    el: '#hello',
+    el: '#results',
     data: {
-      message: "Can you say hello?",
-      name: "lamp"
+      message: "",
     },
     components: { App }
   })
