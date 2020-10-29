@@ -1,3 +1,5 @@
+= javascript_pack_tag 'results'
+
 h2 = @tenhou_account.name
 h3
   | 対戦数 #{@my_one_game_objects.count}
@@ -57,6 +59,10 @@ h3
               | 対戦数
             p.card-text
               = @three_games_scores.count
+#hello
+  = "{{message}}"
+  = "{{name}}"
+  app
 h3
   | 月別の成績
 - @one_month_games.each do |game|
