@@ -60,20 +60,12 @@ h3
             p.card-text
               = @three_games_scores.count
 #results
-  = "{{message}}"
-  app(tenhou_name="#{@tenhou_account.name}")
-  /app(tenhou_name="hoge")
+  app(tenhou_name="#{@tenhou_account.name}"
+  one_month_games="#{@one_month_games.to_json}")
 
+/= @one_month_games.to_json
 h3
   | 月別の成績
-/= form_with url:results_path, local: true do |f|
-/  .form-group
-/    = f.label :start_date
-/    = f.date_field :start_date, class: "form-control"
-/  .form-group
-/    = f.label :end_date
-/    = f.date_field :end_date, class: "form-control"
-/  = f.submit "決定", class: "btn btn-primary"
 
 - @one_month_games.each do |game|
     - four_games_scores = scores(game.four_games, @tenhou_account.name)

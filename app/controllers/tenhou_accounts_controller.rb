@@ -86,7 +86,6 @@ class TenhouAccountsController < ApplicationController
 
     # 3人打ちの全期間の順位が入った配列
     @three_games_rankings = rankings(@three_games, @tenhou_account.name)
-
   end
 
   def new

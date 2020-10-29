@@ -36,7 +36,7 @@ class OneGame
 end
 
 class OneMonthGames
-  attr_accessor :name,:games, :four_games, :three_games
+  attr_accessor :name, :four_games, :three_games
   def initialize(name, games)
     @name = name
     @three_games = []
