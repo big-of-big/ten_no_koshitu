@@ -9,7 +9,7 @@
     <pre> {{ $data }} </pre>
     <!-- <pre> {{ tenhou_name }} </pre> -->
     <!-- {{ selected_four_games}} -->
-    {{ selected_three_games}}
+    <!-- {{ selected_three_games}} -->
     <!-- <ul> -->
       <!-- <li v&#45;for="four_game in JSON.parse(four_games)" > -->
         <!-- {{ set(one_month_game.four_games) }} -->
@@ -17,12 +17,13 @@
         <!-- {{ set_four_games(four_game) }} -->
       <!-- </li> -->
     <!-- </ul> -->
-    <!-- <ul> -->
-    <!--   <li v&#45;for="three_game in three_games" > -->
-    <!--     <!&#45;&#45; {{ set(one_month_game.four_games) }} &#45;&#45;> -->
-    <!--     <!&#45;&#45; {{ three_game }} &#45;&#45;> -->
-    <!--   </li> -->
-    <!-- </ul> -->
+    <ul>
+      <li v-for="three_game in selected_three_games" >
+        <!-- {{ set(one_month_game.four_games) }} -->
+        {{ three_game }}
+        {{ display(three_game)}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -45,6 +46,20 @@ export default {
     four_games: {type: String}
   },
   methods: {
+    display: function(game) {
+      let log = game.one_game_log
+      this.extract_tenhou_accounts_from(log)
+    },
+    extract_tenhou_accounts_from: function(log) {
+      let ary = log.split(' ')
+      ary = ary.slice(6)
+      let names = []
+      for(const name_and_score of ary) {
+        const m = name_and_score.match(/(?<name>.+)\(/)
+        names.push(m.groups.name)
+      }
+      return names
+    }
   },
   computed: {
     three_games: function() {
