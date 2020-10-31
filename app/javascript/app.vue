@@ -1,19 +1,12 @@
 <template>
   <div id="app">
-    <p>期間を選択</p>
+    <span>期間を選択</span>
     <input type="date" v-model="start_date">
     <span>〜</span>
     <input type="date" v-model="end_date">
     <p>4人打ち</p>
-    <p>3人打ち 得点:{{ three_games_score }}</p>
-    <pre> {{ $data }} </pre>
-    <ul>
-      <li v-for="three_game in selected_three_games" >
-        <!-- {{ set(one_month_game.four_games) }} -->
-        {{ three_game }}
-        {{ display(three_game)}}
-      </li>
-    </ul>
+    <p>3人打ち 得点:{{ three_games_score }} 平均順位:{{ three_games_average_ranking }} 対戦数:{{ selected_three_games.length}}</p>
+    <!-- <pre> {{ $data }} </pre> -->
   </div>
 </template>
 
@@ -32,11 +25,6 @@ export default {
     four_games: {type: String}
   },
   methods: {
-    display: function(game) {
-      let log = game.one_game_log
-      // this.extract_tenhou_accounts_from(log)
-      // let scores = this.scores()
-    },
     extract_tenhou_accounts_from: function(log) {
       let ary = log.split(' ')
       ary = ary.slice(6)
@@ -47,6 +35,7 @@ export default {
       }
       return names
     },
+    // 得点の配列を返す関数
     scores: function(logs, tenhou_account_name){
       let ary = []
       let escaped_name = tenhou_account_name.replace(/[.*+?^=!:${}()|[\]\/\\]/g, '\\$&')
@@ -54,8 +43,17 @@ export default {
       for(const log of logs){
         const m = log.match(rg)
         const number = parseInt(m.groups.score, 10)
-        // ary.push(m.groups.score)
         ary.push(number)
+      }
+      return ary
+    },
+    // 順位の配列を返す関数
+    rankings: function(logs, tenhou_account_name){
+      let ary = []
+      for(const log of logs){
+        let tenhou_account_names = this.extract_tenhou_accounts_from(log)
+        let ranking = tenhou_account_names.indexOf(tenhou_account_name) + 1
+        ary.push(ranking)
       }
       return ary
     }
@@ -77,18 +75,23 @@ export default {
           ary.push(three_game.one_game_log)
         }
       }
-      // alert(end)
       return ary
     },
     three_games_score: function(){
       let games = this.selected_three_games
       let scores = this.scores(games, this.tenhou_name)
       if(scores.length > 0){
-        console.log(scores.reduce((sum,currentValue) => sum + currentValue))
         return scores.reduce((sum,currentValue) => sum + currentValue)
       }
+    },
+    three_games_average_ranking: function(){
+      let games = this.selected_three_games
+      let rankings = this.rankings(games, this.tenhou_name)
+      if(rankings.length > 0){
+        let ranking_total = rankings.reduce((sum,currentValue) => sum + currentValue)
+        return (Math.round(ranking_total / rankings.length * 100) / 100)
+      }
     }
-
   }
 }
 </script>
