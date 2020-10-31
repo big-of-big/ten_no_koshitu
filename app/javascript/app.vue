@@ -5,18 +5,8 @@
     <span>〜</span>
     <input type="date" v-model="end_date">
     <p>4人打ち</p>
-    <p>3人打ち</p>
+    <p>3人打ち 得点:{{ three_games_score }}</p>
     <pre> {{ $data }} </pre>
-    <!-- <pre> {{ tenhou_name }} </pre> -->
-    <!-- {{ selected_four_games}} -->
-    <!-- {{ selected_three_games}} -->
-    <!-- <ul> -->
-      <!-- <li v&#45;for="four_game in JSON.parse(four_games)" > -->
-        <!-- {{ set(one_month_game.four_games) }} -->
-        <!-- {{ four_game }} -->
-        <!-- {{ set_four_games(four_game) }} -->
-      <!-- </li> -->
-    <!-- </ul> -->
     <ul>
       <li v-for="three_game in selected_three_games" >
         <!-- {{ set(one_month_game.four_games) }} -->
@@ -33,10 +23,6 @@ export default {
     return {
       start_date: '',
       end_date: '',
-      four_games_scores: '',
-      four_games_rankings: '',
-      three_games_scores: '',
-      three_games_rankings: ''
     }
   },
   props: {
@@ -48,7 +34,8 @@ export default {
   methods: {
     display: function(game) {
       let log = game.one_game_log
-      this.extract_tenhou_accounts_from(log)
+      // this.extract_tenhou_accounts_from(log)
+      // let scores = this.scores()
     },
     extract_tenhou_accounts_from: function(log) {
       let ary = log.split(' ')
@@ -59,6 +46,18 @@ export default {
         names.push(m.groups.name)
       }
       return names
+    },
+    scores: function(logs, tenhou_account_name){
+      let ary = []
+      let escaped_name = tenhou_account_name.replace(/[.*+?^=!:${}()|[\]\/\\]/g, '\\$&')
+      let rg = new RegExp(escaped_name + '\\((?<score>.+?)\\)')
+      for(const log of logs){
+        const m = log.match(rg)
+        const number = parseInt(m.groups.score, 10)
+        // ary.push(m.groups.score)
+        ary.push(number)
+      }
+      return ary
     }
   },
   computed: {
@@ -75,12 +74,21 @@ export default {
       for(const three_game of three_games) {
         let date = new Date(three_game.date)
         if(date >= start && date <= end){
-          ary.push(three_game)
+          ary.push(three_game.one_game_log)
         }
       }
       // alert(end)
       return ary
+    },
+    three_games_score: function(){
+      let games = this.selected_three_games
+      let scores = this.scores(games, this.tenhou_name)
+      if(scores.length > 0){
+        console.log(scores.reduce((sum,currentValue) => sum + currentValue))
+        return scores.reduce((sum,currentValue) => sum + currentValue)
+      }
     }
+
   }
 }
 </script>
