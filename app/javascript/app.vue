@@ -4,9 +4,18 @@
     <input type="date" v-model="start_date">
     <span>〜</span>
     <input type="date" v-model="end_date">
-    <p>4人打ち</p>
-    <p>3人打ち 得点:{{ three_games_score }} 平均順位:{{ three_games_average_ranking }} 対戦数:{{ selected_three_games.length}}</p>
-    <!-- <pre> {{ $data }} </pre> -->
+    <p>
+      4人打ち
+      得点:{{ games_score(selected_four_games) }}
+      平均順位:{{ games_average_ranking(selected_four_games) }}
+      対戦数:{{ selected_four_games.length}}
+    </p>
+    <p>
+      3人打ち
+      得点:{{ games_score(selected_three_games) }}
+      平均順位:{{ games_average_ranking(selected_three_games) }}
+      対戦数:{{ selected_three_games.length}}
+    </p>
   </div>
 </template>
 
@@ -22,7 +31,7 @@ export default {
     tenhou_name: { type: String },
     one_month_games: {type: String},
     three_games_string: {type: String},
-    four_games: {type: String}
+    four_games_string: {type: String}
   },
   methods: {
     extract_tenhou_accounts_from: function(log) {
@@ -56,12 +65,29 @@ export default {
         ary.push(ranking)
       }
       return ary
+    },
+    games_score: function(games){
+      let scores = this.scores(games, this.tenhou_name)
+      if(scores.length > 0){
+        return scores.reduce((sum,currentValue) => sum + currentValue)
+      }
+    },
+    games_average_ranking: function(games){
+      let rankings = this.rankings(games, this.tenhou_name)
+      if(rankings.length > 0){
+        let ranking_total = rankings.reduce((sum,currentValue) => sum + currentValue)
+        return (Math.round(ranking_total / rankings.length * 100) / 100)
+      }
     }
   },
   computed: {
     three_games: function() {
       return JSON.parse(this.three_games_string)
     },
+    four_games: function() {
+      return JSON.parse(this.four_games_string)
+    },
+    // ログが入った配列（他の情報はない）
     selected_three_games: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
 
@@ -77,20 +103,20 @@ export default {
       }
       return ary
     },
-    three_games_score: function(){
-      let games = this.selected_three_games
-      let scores = this.scores(games, this.tenhou_name)
-      if(scores.length > 0){
-        return scores.reduce((sum,currentValue) => sum + currentValue)
+    selected_four_games: function () {
+      // 開始か終了の期間が変更されるとこの処理が実行される
+
+      const start = new Date(this.start_date)
+      const end = new Date(this.end_date)
+      const four_games = this.four_games
+      let ary = []
+      for(const four_game of four_games) {
+        let date = new Date(four_game.date)
+        if(date >= start && date <= end){
+          ary.push(four_game.one_game_log)
+        }
       }
-    },
-    three_games_average_ranking: function(){
-      let games = this.selected_three_games
-      let rankings = this.rankings(games, this.tenhou_name)
-      if(rankings.length > 0){
-        let ranking_total = rankings.reduce((sum,currentValue) => sum + currentValue)
-        return (Math.round(ranking_total / rankings.length * 100) / 100)
-      }
+      return ary
     }
   }
 }
