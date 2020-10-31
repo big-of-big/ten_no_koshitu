@@ -1,8 +1,12 @@
+= javascript_pack_tag 'table'
+
 - if current_user.team.present?
     - if @tenhou_accounts.present?
       h2
         | #{current_user.team.name}の成績
-      table class="table"
+      #table
+        hoge
+      table.table
         thead
           tr
             th scope="col" ユーザー

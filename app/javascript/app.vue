@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <span>期間を選択</span>
     <input type="date" v-model="start_date">
     <span>〜</span>
