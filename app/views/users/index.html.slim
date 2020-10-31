@@ -2,10 +2,43 @@
     - if @tenhou_accounts.present?
       h2
         | #{current_user.team.name}の成績
-      - @tenhou_accounts.each do |tenhou_account|
-        p = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
+      table class="table"
+        thead
+          tr
+            th scope="col" ユーザー
+            th scope="col" 4人打ち得点
+            th scope="col" 4人打ち平均順位
+            th scope="col" 試合数
+            th scope="col" 3人打ち得点
+            th scope="col" 3人打ち平均順位
+            th scope="col" 試合数
+        tbody
+          - @tenhou_accounts.each do |tenhou_account|
+            - hash = info(tenhou_account)
+            tr
+              td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
+              - if hash[:four_games_scores].empty?
+                td ---
+                td ---
+                td ---
+              - else
+                td = hash[:four_games_scores].sum
+                td = hash[:four_games_rankings]
+                td = hash[:four_games_scores].count
+              - if hash[:three_games_scores].empty?
+                td ---
+                td ---
+                td ---
+              - else
+                td = hash[:three_games_scores]&.sum
+                td = hash[:three_games_rankings]
+                td = hash[:three_games_scores]&.count
+
+
       = link_to "チーム設定", edit_team_path(current_user.team), class: "btn btn-primary mr-2"
       = link_to "ログを確認する", team_logs_path(current_user.team), class: "btn btn-primary"
+
+
 - else
   p
     | どのチームに所属していません。

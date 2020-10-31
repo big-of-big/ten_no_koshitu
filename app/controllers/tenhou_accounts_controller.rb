@@ -42,23 +42,23 @@ class TenhouAccountsController < ApplicationController
         end
       end
 
-    # @three_games_hash = { 2020/02:[game,game], 2020/03: [game,game,game]] }
-    # 月別のgameオブジェクトが入ったハッシュ
-    @three_games_hash = { }
-    @three_games.each do |game|
-      unless @three_games_hash.has_key?(game.year_month)
-        @three_games_hash[game.year_month] = []
-      end
-      @three_games_hash[game.year_month] << game
-    end
-
-    @four_games_hash = { }
-    @four_games.each do |game|
-      unless @four_games_hash.has_key?(game.year_month)
-        @four_games_hash[game.year_month] = []
-      end
-      @four_games_hash[game.year_month] << game
-    end
+    # # @three_games_hash = { 2020/02:[game,game], 2020/03: [game,game,game]] }
+    # # 月別のgameオブジェクトが入ったハッシュ
+    # @three_games_hash = { }
+    # @three_games.each do |game|
+    #   unless @three_games_hash.has_key?(game.year_month)
+    #     @three_games_hash[game.year_month] = []
+    #   end
+    #   @three_games_hash[game.year_month] << game
+    # end
+    #
+    # @four_games_hash = { }
+    # @four_games.each do |game|
+    #   unless @four_games_hash.has_key?(game.year_month)
+    #     @four_games_hash[game.year_month] = []
+    #   end
+    #   @four_games_hash[game.year_month] << game
+    # end
 
 
     # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
