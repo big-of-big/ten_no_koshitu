@@ -5,6 +5,14 @@
       h2
         | #{current_user.team.name}の成績
       #table
+        input#all-term type="checkbox" v-model="all"
+        label for="all-term" 全期間
+        p 期間を選択
+        input type="date" v-model="start"
+        span 〜
+        input type="date" v-model="end"
+
+        pre = "{{$data}}"
         hoge
       table.table
         thead
@@ -42,6 +50,9 @@
       = link_to "チーム設定", edit_team_path(current_user.team), class: "btn btn-primary mr-2"
       = link_to "ログを確認する", team_logs_path(current_user.team), class: "btn btn-primary"
 
+    - else
+      p
+        | 天鳳アカウントが登録されていません
 
 - else
   p
