@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <p>
-      {{ tenhou_name }}
-      {{ term }}
-      <!-- {{ three_games }} -->
-      <!-- {{ four_games }} -->
-    </p>
-  </div>
+  <tr>
+    <td scope="row">
+      <a :href="url"> {{ tenhou_name }} </a>
+    </td>
+    <td> {{ games_score(selected_four_games) }}</td>
+    <td>{{ games_average_ranking(selected_four_games) }}</td>
+    <td>{{ selected_four_games.length}}</td>
+    <td>{{ games_score(selected_three_games) }}</td>
+    <td>{{ games_average_ranking(selected_four_games) }}</td>
+    <td>{{ selected_three_games.length}}</td>
+  </tr>
 </template>
 
 <script>
@@ -21,7 +24,8 @@ export default {
     tenhou_name: { type: String },
     three_games_string: {type: String},
     four_games_string: {type: String},
-    term: {type: Object}
+    term: {type: Object},
+    url: {type: String}
   },
   methods: {
     extract_tenhou_accounts_from: function(log) {
@@ -80,30 +84,40 @@ export default {
     // ログが入った配列（他の情報はない）
     selected_three_games: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
-
-      const start = new Date(this.start_date)
-      const end = new Date(this.end_date)
-      const three_games = this.three_games
       let ary = []
-      for(const three_game of three_games) {
-        let date = new Date(three_game.date)
-        if(date >= start && date <= end){
+      const three_games = this.three_games
+      if(this.term.all === true){
+        for(const three_game of three_games) {
           ary.push(three_game.one_game_log)
+        }
+      } else {
+        const start = new Date(this.term.start)
+        const end = new Date(this.term.end)
+        for(const three_game of three_games) {
+          let date = new Date(three_game.date)
+          if(date >= start && date <= end){
+            ary.push(three_game.one_game_log)
+          }
         }
       }
       return ary
     },
     selected_four_games: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
-
-      const start = new Date(this.start_date)
-      const end = new Date(this.end_date)
-      const four_games = this.four_games
       let ary = []
-      for(const four_game of four_games) {
-        let date = new Date(four_game.date)
-        if(date >= start && date <= end){
-          ary.push(four_game.one_game_log)
+      const three_games = this.three_games
+      if(this.term.all === true){
+        for(const three_game of three_games) {
+          ary.push(three_game.one_game_log)
+        }
+      } else {
+        const start = new Date(this.term.start)
+        const end = new Date(this.term.end)
+        for(const three_game of three_games) {
+          let date = new Date(three_game.date)
+          if(date >= start && date <= end){
+            ary.push(three_game.one_game_log)
+          }
         }
       }
       return ary
