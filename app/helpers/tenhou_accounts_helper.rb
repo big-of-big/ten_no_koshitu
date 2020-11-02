@@ -34,6 +34,7 @@ module TenhouAccountsHelper
           @four_games << my_one_game_object
         end
       end
+      { three_games: @three_games, four_games: @four_games }
   end
 
   def info(tenhou_account)

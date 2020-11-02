@@ -24,19 +24,20 @@
               th scope="col" 3人打ち得点
               th scope="col" 3人打ち平均順位
               th scope="col" 試合数
-          /tbody
-          /  - @tenhou_accounts.each do |tenhou_account|
-          /  - hash = info(tenhou_account)
-          /    user(tenhou_name="#{tenhou_name.name}"
-          /      
-          /    )
-          /    tr
-          /      td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
+          tbody
+            - @tenhou_accounts.each do |tenhou_account|
+              - hash = set_three_and_four_games(tenhou_account)
+              user(tenhou_name="#{tenhou_account.name}"
+                  three_games_string="#{hash[:three_games].to_json}"
+                  four_games_string="#{hash[:four_games].to_json}"
+              )
+              /tr
+                td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
 
-          - @tenhou_accounts.each do |tenhou_account|
-            - hash = info(tenhou_account)
-            tr
-              td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
+          /- @tenhou_accounts.each do |tenhou_account|
+          /  - hash = info(tenhou_account)
+          /  tr
+          /    td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)
           /      td = hash[:four_games_scores].sum
           /      td = hash[:four_games_rankings]
           /      td = hash[:four_games_scores].count
