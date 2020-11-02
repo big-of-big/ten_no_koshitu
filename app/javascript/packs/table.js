@@ -11,6 +11,13 @@ document.addEventListener('turbolinks:load', () => {
     },
     components: { User },
     computed: {
+      term: function() {
+        if (this.all === true) {
+          return {all: true}
+        } else {
+          return {start: this.start, end: this.end}
+        }
+      },
       changeAll: {
         get: function () {
           return this.all

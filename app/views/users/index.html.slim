@@ -12,6 +12,7 @@
         span 〜
         input type="date" v-model="changeEnd"
 
+        = "{{term }}"
         pre = "{{$data}}"
 
         table.table
@@ -30,6 +31,7 @@
               user(tenhou_name="#{tenhou_account.name}"
                   three_games_string="#{hash[:three_games].to_json}"
                   four_games_string="#{hash[:four_games].to_json}"
+                  v-bind:term="term"
               )
               /tr
                 td scope="row" = link_to tenhou_account.name, tenhou_account_path(tenhou_account)

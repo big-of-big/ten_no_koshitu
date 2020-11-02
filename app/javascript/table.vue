@@ -2,7 +2,9 @@
   <div>
     <p>
       {{ tenhou_name }}
-      {{ three_games }}
+      {{ term }}
+      <!-- {{ three_games }} -->
+      <!-- {{ four_games }} -->
     </p>
   </div>
 </template>
@@ -18,7 +20,8 @@ export default {
   props: {
     tenhou_name: { type: String },
     three_games_string: {type: String},
-    four_games_string: {type: String}
+    four_games_string: {type: String},
+    term: {type: Object}
   },
   methods: {
     extract_tenhou_accounts_from: function(log) {
