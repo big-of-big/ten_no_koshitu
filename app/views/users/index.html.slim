@@ -5,12 +5,12 @@
       h2
         | #{current_user.team.name}の成績
       #table
-        input#all-term type="checkbox" v-model="all"
+        input#all-term type="checkbox" v-model="changeAll"
         label for="all-term" 全期間
         p 期間を選択
-        input type="date" v-model="start"
+        input type="date" v-model="changeStart"
         span 〜
-        input type="date" v-model="end"
+        input type="date" v-model="changeEnd"
 
         pre = "{{$data}}"
         hoge
