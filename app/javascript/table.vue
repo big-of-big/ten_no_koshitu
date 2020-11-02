@@ -1,6 +1,5 @@
 <template>
   <div>
-    hogepiyo
-    baby
+    user-name
   </div>
 </template>

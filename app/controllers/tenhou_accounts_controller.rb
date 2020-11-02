@@ -1,4 +1,5 @@
 class TenhouAccountsController < ApplicationController
+  include TenhouAccountsHelper
   include LogsHelper
   before_action :set_tenhou_account, only: %i[show edit update destroy]
   before_action :authenciate_team_member, only: %i[show edit update destroy]
@@ -8,58 +9,7 @@ class TenhouAccountsController < ApplicationController
   # end
 
   def show
-    # 全期間のTeamLogオブジェクトを取得している
-    team_logs = TeamLog.where(team_id: @tenhou_account.team_id)
-    game_objects =
-      team_logs.map do |team_log|
-        Game.new(team_log.name, team_log.content)
-      end
-
-    one_game_objects = []
-
-    game_objects.each do |game_object|
-      JSON.parse(game_object.content).each do |one_game_log|
-       one_game_objects << OneGame.new(game_object.name,one_game_log)
-      end
-    end
-
-    # 全期間の4人打ちと3人打ちが混じった配列
-    @my_one_game_objects =
-      one_game_objects.select do |one_game_object|
-        tenhou_accounts_names = extract_tenhou_accounts_from(one_game_object.one_game_log)
-        tenhou_accounts_names.include?(@tenhou_account.name)
-      end
-
-    # この配列に全期間の3人打ちと4人打ちのgame_objectが格納されている
-    # この配列は必要。この配列から月別にまとめられる？
-    @three_games = []
-    @four_games = []
-      @my_one_game_objects.each do |my_one_game_object|
-        if my_one_game_object.type == 3
-          @three_games << my_one_game_object
-        else
-          @four_games << my_one_game_object
-        end
-      end
-
-    # # @three_games_hash = { 2020/02:[game,game], 2020/03: [game,game,game]] }
-    # # 月別のgameオブジェクトが入ったハッシュ
-    # @three_games_hash = { }
-    # @three_games.each do |game|
-    #   unless @three_games_hash.has_key?(game.year_month)
-    #     @three_games_hash[game.year_month] = []
-    #   end
-    #   @three_games_hash[game.year_month] << game
-    # end
-    #
-    # @four_games_hash = { }
-    # @four_games.each do |game|
-    #   unless @four_games_hash.has_key?(game.year_month)
-    #     @four_games_hash[game.year_month] = []
-    #   end
-    #   @four_games_hash[game.year_month] << game
-    # end
-
+    set_three_and_four_games(@tenhou_account)
 
     # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
     all_games_hash = {}

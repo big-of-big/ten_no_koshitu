@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import Hoge from '../table.vue'
+import User from '../table.vue'
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
@@ -9,7 +9,7 @@ document.addEventListener('turbolinks:load', () => {
       start: '',
       end: ''
     },
-    components: { Hoge },
+    components: { User },
     computed: {
       changeAll: {
         get: function () {
