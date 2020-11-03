@@ -12,6 +12,6 @@ h2
     p
       = tenhou_account.name
       = link_to "編集", edit_tenhou_account_path(tenhou_account), class:"btn btn-secondary mx-2"
-      = link_to "削除", tenhou_account_path(tenhou_account), method: :delete, class:"btn btn-secondary"
+      = link_to "削除", tenhou_account_path(tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？"}, class:"btn btn-secondary"
 = link_to "メンバーを追加", new_tenhou_account_path , class: "btn btn-primary mb-3"
 = link_to "チームへ招待する", teams_invite_path , class: "btn btn-primary mb-3 ml-3"

@@ -5,7 +5,7 @@ class TenhouAccountsController < ApplicationController
   before_action :authenciate_team_member, only: %i[show edit update destroy]
 
   def index
-    @tenhou_accounts = current_user.team.tenhou_accounts
+    @tenhou_accounts = current_user.team&.tenhou_accounts
   end
 
   def show
