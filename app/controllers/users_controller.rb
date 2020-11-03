@@ -5,9 +5,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destory]
 
   def index
-    if current_user.team.present?
-      @tenhou_accounts = current_user.team.tenhou_accounts
-    end
   end
 
   def show

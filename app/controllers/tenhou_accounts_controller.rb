@@ -4,9 +4,9 @@ class TenhouAccountsController < ApplicationController
   before_action :set_tenhou_account, only: %i[show edit update destroy]
   before_action :authenciate_team_member, only: %i[show edit update destroy]
 
-  # def index
-  #   @tenhou_accounts = TenhouAccount.all
-  # end
+  def index
+    @tenhou_accounts = current_user.team.tenhou_accounts
+  end
 
   def show
     set_three_and_four_games(@tenhou_account)
