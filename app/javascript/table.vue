@@ -3,11 +3,11 @@
     <td scope="row">
       <a :href="url"> {{ tenhou_name }} </a>
     </td>
-    <td> {{ games_score(selected_four_games) }}</td>
+    <td>{{ games_score(selected_four_games) }}</td>
     <td>{{ games_average_ranking(selected_four_games) }}</td>
     <td>{{ selected_four_games.length}}</td>
     <td>{{ games_score(selected_three_games) }}</td>
-    <td>{{ games_average_ranking(selected_four_games) }}</td>
+    <td>{{ games_average_ranking(selected_three_games) }}</td>
     <td>{{ selected_three_games.length}}</td>
   </tr>
 </template>
@@ -105,18 +105,18 @@ export default {
     selected_four_games: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
       let ary = []
-      const three_games = this.three_games
+      const four_games = this.four_games
       if(this.term.all === true){
-        for(const three_game of three_games) {
-          ary.push(three_game.one_game_log)
+        for(const four_game of four_games) {
+          ary.push(four_game.one_game_log)
         }
       } else {
         const start = new Date(this.term.start)
         const end = new Date(this.term.end)
-        for(const three_game of three_games) {
-          let date = new Date(three_game.date)
+        for(const four_game of four_games) {
+          let date = new Date(four_game.date)
           if(date >= start && date <= end){
-            ary.push(three_game.one_game_log)
+            ary.push(four_game.one_game_log)
           }
         }
       }

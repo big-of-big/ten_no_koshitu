@@ -4,7 +4,6 @@ class Teams::JoinsController < ApplicationController
   def create
     join_key = params[:team_id].to_s
     team = Team.find_by(join_key: join_key)
-    binding.pry
     if team.present?
       current_user.team = team
       current_user.save!
