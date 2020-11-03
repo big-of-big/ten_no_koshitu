@@ -9,17 +9,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
 
-  validates :tenhou_account,
-    presence: true,
-    length: { maximum: 8 },
-    uniqueness: { scope: :team_id }
-  validate :correct_tenhou_account
-
-  def correct_tenhou_account
-    if [" ", "　", "(" ,")", "（" ,"）"].any? { |i| tenhou_account.include?(i) }
-      errors.add(:tenhou_account, "に使用できない文字が含まれています")
-    end
-  end
   # deviseのメソッドをオーバーライドして、パスワード無しでユーザー情報を編集できるようにする
   def update_with_password(params)
     if params[:password].blank?

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "ユーザー情報を更新しました"
+      redirect_to root_path, notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :tenhou_account, :email, :picture)
+      params.require(:user).permit(:name, :email)
     end
 
     def ensure_correct_user

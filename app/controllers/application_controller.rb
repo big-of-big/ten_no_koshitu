@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-      attrs = [:name, :tenhou_account, :image]
+      attrs = [:name]
       devise_parameter_sanitizer.permit(:sign_up, keys: attrs)
       devise_parameter_sanitizer.permit(:account_update, keys: attrs)
     end
