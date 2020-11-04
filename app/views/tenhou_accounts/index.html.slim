@@ -16,12 +16,16 @@
         table.table
           thead
             tr
+              th
+              th.text-center scope="col" colspan="3" 4人打ち
+              th.text-center scope="col" colspan="3" 3人打ち
+            tr
               th scope="col" ユーザー
-              th scope="col" 4人打ち得点
-              th scope="col" 4人打ち平均順位
+              th scope="col" 得点
+              th scope="col" 平均順位
               th scope="col" 試合数
-              th scope="col" 3人打ち得点
-              th scope="col" 3人打ち平均順位
+              th scope="col" 得点
+              th scope="col" 平均順位
               th scope="col" 試合数
           tbody
           - @tenhou_accounts.each do |tenhou_account|
