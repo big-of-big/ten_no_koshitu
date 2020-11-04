@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import User from '../table.vue'
+import User from '../user.vue'
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({

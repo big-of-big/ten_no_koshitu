@@ -1,4 +1,4 @@
-= javascript_pack_tag 'results'
+= javascript_pack_tag 'result'
 
 h2 = @tenhou_account.name
 h3
@@ -60,7 +60,7 @@ h3
             p.card-text
               = @three_games_scores.count
 #results
-  app(tenhou_name="#{@tenhou_account.name}"
+  result(tenhou_name="#{@tenhou_account.name}"
     three_games_string="#{@three_games.to_json}"
     four_games_string="#{@four_games.to_json}"
   )
