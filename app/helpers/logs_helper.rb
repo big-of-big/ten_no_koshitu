@@ -4,8 +4,8 @@ module LogsHelper
   def team_members(team)
     return if team.tenhou_accounts.empty?
     tenhou_names = team.tenhou_accounts.map do |tenhou_account|
-        tenhou_account.name
-      end
+      tenhou_account.name
+    end
     tenhou_names
   end
 

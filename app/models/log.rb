@@ -28,10 +28,11 @@ class Log < ApplicationRecord
 
       Team.all.each do |team|
         team_tenhou_accounts = team_members(team)
+        # ログの中からチームメンバー全ての名前があるログのみを取得する
         team_logs =
           games.select do |game|
             (team_tenhou_accounts & extract_tenhou_accounts_from(game)).sort! == extract_tenhou_accounts_from(game).sort!
-            end
+          end
         unless team_logs.empty?
           TeamLog.create!(name:Log.last.name, content:"#{team_logs}",team_id: team.id )
         end
