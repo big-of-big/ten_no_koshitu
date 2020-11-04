@@ -37,7 +37,10 @@
 
     - else
       p
-        | 天鳳アカウントが登録されていません
+        | 天鳳アカウントが登録されていません。
+      p
+        | チームに天鳳アカウントを追加しましょう！
+      = link_to "メンバーを追加", new_tenhou_account_path , class: "btn btn-primary mb-3"
 
 - else
   p
