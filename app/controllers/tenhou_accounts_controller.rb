@@ -46,10 +46,10 @@ class TenhouAccountsController < ApplicationController
   end
 
   def create
-    tenhou_account = TenhouAccount.new(tenhou_account_params)
-    tenhou_account.team = current_user.team
+    @tenhou_account = TenhouAccount.new(tenhou_account_params)
+    @tenhou_account.team = current_user.team
 
-    if tenhou_account.save
+    if @tenhou_account.save
       redirect_to root_path, notice: "チームにメンバーを追加しました"
     else
       render :new

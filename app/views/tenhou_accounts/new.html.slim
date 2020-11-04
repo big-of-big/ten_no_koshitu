@@ -1,7 +1,12 @@
+- if @tenhou_account.errors.any?
+  .alert.alert-danger
+    - @tenhou_account.errors.full_messages.each do |msg|
+     li.mb-0 = msg
+
 h2
   | チームへ追加
 = form_with model: @tenhou_account, local: true do |f|
   .form-group
     = f.label :name
-    = f.text_field :name, autofocus: true, class: "form-control"
+    = f.text_field :name, class: "form-control"
   = f.submit "追加", class: "btn btn-primary mb-3"
