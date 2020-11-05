@@ -33,7 +33,7 @@ export default {
       ary = ary.slice(6)
       let names = []
       for(const name_and_score of ary) {
-        const m = name_and_score.match(/(?<name>.+)\(/)
+        const m = name_and_score.match(/(?<name>.+)\((?<score>[+-]?[\d\.]+)/)
         names.push(m.groups.name)
       }
       return names
