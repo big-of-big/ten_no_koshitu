@@ -12,11 +12,10 @@ module LogsHelper
   # 1つのログから天鳳アカウント名だけ抜き出し配列にする
   def extract_tenhou_accounts_from(game)
     ary = game.split(" ")
-    ary.shift(6) # ログから不要な部分を削除
+    ary.shift(6) # ログから不要な部分(部屋番号や時間など)を削除
     names =
       ary.map do |game|
-        # 天鳳アカウント名に()を含むことはできない
-        m = /(?<name>.+)\(/.match(game)
+        m = /(?<name>.+)\((?<score>[+-]?[\d\.]+)/.match(game)
         m[:name]
       end
     names

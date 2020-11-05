@@ -35,8 +35,7 @@ class User < ApplicationRecord
     ary.shift(6) # ログから不要な部分(部屋番号や時間など)を削除
     names =
       ary.map do |game|
-        # 天鳳アカウント名に()を含むことはできない
-        m = /(?<name>.+)\(/.match(game)
+        m = /(?<name>.+)\((?<score>[+-]?[\d\.]+)/.match(game)
         m[:name]
       end
     names
