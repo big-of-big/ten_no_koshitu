@@ -1,6 +1,7 @@
 class TenhouAccountsController < ApplicationController
   include TenhouAccountsHelper
   include LogsHelper
+  before_action :authenticate_user!
   before_action :set_tenhou_account, only: %i[show edit update destroy]
   before_action :authenciate_team_member, only: %i[show edit update destroy]
 
