@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[edit update]
+  before_action :ensure_correct_team, only: %i[edit update]
 
   def new
     @team = Team.new
@@ -38,9 +39,9 @@ class TeamsController < ApplicationController
       params.require(:team).permit(:name, :image)
     end
 
-    def ensure_correct_user
-      if @book.user_id != current_user.id
-        redirect_to root_path, notice: t(".flash_no_authority")
+    def ensure_correct_team
+      if current_user.team != @team
+        redirect_to root_path, notice: "権限がありません。"
       end
     end
 end

@@ -7,14 +7,13 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
-    /meta name="turbolinks-cache-control" content="no-cache"
   body
     header
     .navbar.navbar-expand-md.navbar-light.bg-primary
       = link_to "天の個室", root_path, class: "navbar-brand "
       ul.navbar-nav.ml-auto
         - if user_signed_in?
-          li.nav-item = link_to 'プロフィール変更', edit_user_path(current_user), class: "nav-link text-body"
+          li.nav-item = link_to 'プロフィール変更',edit_user_registration_path , class: "nav-link text-body"
         - else
           li.nav-item = link_to 'アカウント登録', signup_path, class: "nav-link text-body"
           li.nav-item = link_to 'ログイン', login_path, class: "nav-link text-body"

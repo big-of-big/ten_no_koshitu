@@ -18,10 +18,11 @@ Rails.application.routes.draw do
     post 'login', to: 'devise/sessions#create'
     delete 'logout', to: 'devise/sessions#destroy'
     delete 'retirement', to: 'devise/registrations#destroy'
+    get 'my_page', to:'devise/registrations#edit' ,as: :edit_user_registration
+    patch 'my_page', to: 'devise/registrations#update', as: nil
+    put 'my_page', to: 'devise/registrations#update', as: :update_user_registration
   end
 
-  # ユーザー作成はdeviseで行う
-  resources :users, except: %i[new create index show]
   resources :tenhou_accounts
   resources :teams, only: %i[new edit create update]
   get "teams/join", to: "teams/joins#new", as: "new_team_join"
@@ -30,5 +31,4 @@ Rails.application.routes.draw do
   get "teams/invite", to: "teams/invites#new"
   post "teams/invite", to: "teams/invites#create"
   get "teams/:id/logs", to: "teams/logs#index", as: "team_logs"
-  get "api/results", to: "api/results#index", as: "results"
 end
