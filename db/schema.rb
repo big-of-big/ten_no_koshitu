@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_054543) do
+ActiveRecord::Schema.define(version: 2020_11_06_054022) do
 
   create_table "logs", force: :cascade do |t|
     t.string "name", null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_054543) do
     t.string "join_key", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "log"
   end
 
   create_table "tenhou_accounts", force: :cascade do |t|
