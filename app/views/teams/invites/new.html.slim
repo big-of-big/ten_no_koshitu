@@ -6,4 +6,7 @@ p
   | チームIDをチームに入りたい人に教えてあげましょう。
 p
   | その人がチームIDを入力することでチームに参加できます。
-= link_to "トップページへ戻る", root_path
+p
+  = link_to "チーム設定", edit_team_path(current_user.team)
+p
+  = link_to "トップページ", root_path
