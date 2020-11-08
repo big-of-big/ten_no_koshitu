@@ -35,7 +35,7 @@ class Log < ApplicationRecord
 
       Team.all.each do |team|
         team_tenhou_accounts = team_members(team)
-        # ログの中からチームメンバー全ての名前があるログのみを取得する
+        # ログのプレーヤー3人もしくは4人が全てが同じチームに所属しているログ
         team_logs =
           games.select do |game|
             (team_tenhou_accounts & extract_tenhou_accounts_from(game)).sort! == extract_tenhou_accounts_from(game).sort!
