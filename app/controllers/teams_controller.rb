@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     @team.join_key = @team.object_id
 
     if @team.save && current_user.save
-      redirect_to root_path, notice: "チームを作成しました"
+      redirect_to root_path, notice: "チームを作成しました。"
     else
       render :new
     end
@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to root_path, notice: "チーム情報を更新しました"
+      redirect_to root_path, notice: "チーム情報を更新しました。"
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class TeamsController < ApplicationController
     end
 
     def team_params
-      params.require(:team).permit(:name, :image)
+      params.require(:team).permit(:name)
     end
 
     def ensure_correct_team

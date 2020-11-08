@@ -3,7 +3,7 @@
 h2 = @tenhou_account.name
 h3
   | 対戦数 #{@my_one_game_objects.count}
-  |  合計得点 #{(@four_games_scores + @three_games_scores).sum}
+  | 合計得点 #{(@four_games_scores + @three_games_scores).sum}
 - unless @four_games_scores.present?
   p
     | 4人打ちの対戦記録はありません

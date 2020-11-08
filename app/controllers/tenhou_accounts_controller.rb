@@ -10,7 +10,11 @@ class TenhouAccountsController < ApplicationController
   end
 
   def show
-    set_three_and_four_games(@tenhou_account)
+    # set_three_and_four_games(@tenhou_account)
+    hash = set_three_and_four_games(@tenhou_account)
+    three_games = hash[:three_games]
+    four_games = hash[:four_games]
+    @my_one_game_objects = get_my_one_game_objects(@tenhou_account)
 
     # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
     all_games_hash = {}
@@ -27,16 +31,16 @@ class TenhouAccountsController < ApplicationController
       end
 
     # 4人打ちの全期間の得点が入った配列
-    @four_games_scores = scores(@four_games, @tenhou_account.name)
+    @four_games_scores = scores(four_games, @tenhou_account.name)
 
     # 3人打ちの全期間の得点が入った配列
-    @three_games_scores = scores(@three_games, @tenhou_account.name)
+    @three_games_scores = scores(three_games, @tenhou_account.name)
 
     # 4人打ちの全期間の順位が入った配列
-    @four_games_rankings = rankings(@four_games, @tenhou_account.name)
+    @four_games_rankings = rankings(four_games, @tenhou_account.name)
 
     # 3人打ちの全期間の順位が入った配列
-    @three_games_rankings = rankings(@three_games, @tenhou_account.name)
+    @three_games_rankings = rankings(three_games, @tenhou_account.name)
   end
 
   def new
