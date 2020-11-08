@@ -61,7 +61,6 @@ gem 'devise'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap-honoka-rails'
-gem 'whenever', require: false
 gem 'rails-i18n'
 
 group :production do
