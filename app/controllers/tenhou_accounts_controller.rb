@@ -13,7 +13,7 @@ class TenhouAccountsController < ApplicationController
     hash = set_three_and_four_games(@tenhou_account)
     three_games = hash[:three_games]
     four_games = hash[:four_games]
-    @my_one_game_objects = get_my_one_game_objects(@tenhou_account)
+    @my_one_game_objects = set_my_one_game_objects(@tenhou_account)
 
     # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
     @one_month_games = make_one_month_games_objects(@my_one_game_objects)

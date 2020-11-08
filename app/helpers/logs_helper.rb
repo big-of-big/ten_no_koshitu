@@ -1,5 +1,6 @@
 module LogsHelper
-  # チームメンバー全員の名前の配列を作る
+
+  # チームメンバー全員の天鳳アカウント名の配列を作る
   def team_members(team)
     return if team.tenhou_accounts.empty?
     tenhou_names = team.tenhou_accounts.map do |tenhou_account|
