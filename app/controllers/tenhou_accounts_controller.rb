@@ -11,19 +11,19 @@ class TenhouAccountsController < ApplicationController
 
   def show
     hash = set_three_and_four_games(@tenhou_account)
-    three_games = hash[:three_games]
-    four_games = hash[:four_games]
+    @three_games = hash[:three_games]
+    @four_games = hash[:four_games]
     @my_one_game_objects = set_my_one_game_objects(@tenhou_account)
 
     @one_month_games = make_one_month_games_objects(@my_one_game_objects)
 
     # 全期間の得点が入った配列
-    @four_games_scores = scores(four_games, @tenhou_account.name)
-    @three_games_scores = scores(three_games, @tenhou_account.name)
+    @four_games_scores = scores(@four_games, @tenhou_account.name)
+    @three_games_scores = scores(@three_games, @tenhou_account.name)
 
     # 全期間の順位が入った配列
-    @four_games_rankings = rankings(four_games, @tenhou_account.name)
-    @three_games_rankings = rankings(three_games, @tenhou_account.name)
+    @four_games_rankings = rankings(@four_games, @tenhou_account.name)
+    @three_games_rankings = rankings(@three_games, @tenhou_account.name)
   end
 
   def new
