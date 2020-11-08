@@ -15,7 +15,6 @@ class TenhouAccountsController < ApplicationController
     four_games = hash[:four_games]
     @my_one_game_objects = set_my_one_game_objects(@tenhou_account)
 
-    # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
     @one_month_games = make_one_month_games_objects(@my_one_game_objects)
 
     # 全期間の得点が入った配列
