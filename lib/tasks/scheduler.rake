@@ -4,9 +4,3 @@ namespace :logs do
     Log.create!(Log.private_room_log)
   end
 end
-
-desc "ほげほげ"
-task :hoge => :environment do
-  puts "Updating feed..."
-  puts "done."
-end

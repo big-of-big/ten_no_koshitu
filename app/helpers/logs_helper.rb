@@ -1,5 +1,4 @@
 module LogsHelper
-
   # チームメンバー全員の名前の配列を作る
   def team_members(team)
     return if team.tenhou_accounts.empty?
