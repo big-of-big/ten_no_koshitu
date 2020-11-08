@@ -39,4 +39,20 @@ module TenhouAccountsHelper
       end
     my_one_game_objects
   end
+
+  def make_one_month_games_objects(one_game_objects)
+    all_games_hash = {}
+    one_game_objects.each do |game|
+      unless all_games_hash.has_key?(game.year_month)
+        all_games_hash[game.year_month] = []
+      end
+      all_games_hash[game.year_month] << game
+    end
+
+    one_month_games =
+      all_games_hash.map do |name, games|
+        OneMonthGames.new(name,games)
+      end
+    one_month_games
+  end
 end

@@ -87,10 +87,3 @@ h3
       - else
         p
           | 3人打ち | 合計得点 #{three_games_scores.sum}  | 平均順位 #{(three_games_rankings.sum(0.0) / three_games_rankings.count).round(2)} | 対戦数 #{three_games_scores.count}
-
-/h3
-/  | 対戦記録
-/- @my_one_game_objects.each do |game|
-/  .card
-/    .card-body
-/        =  "#{game.name} | #{game.type}人打ち☆(≧▽≦) #{game.one_game_log}"

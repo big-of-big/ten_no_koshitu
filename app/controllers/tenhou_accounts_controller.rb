@@ -10,36 +10,20 @@ class TenhouAccountsController < ApplicationController
   end
 
   def show
-    # set_three_and_four_games(@tenhou_account)
     hash = set_three_and_four_games(@tenhou_account)
     three_games = hash[:three_games]
     four_games = hash[:four_games]
     @my_one_game_objects = get_my_one_game_objects(@tenhou_account)
 
     # 3人打ち4人打ち合算の月別gameオブジェクトが入ったハッシュ
-    all_games_hash = {}
-    @my_one_game_objects.each do |game|
-      unless all_games_hash.has_key?(game.year_month)
-        all_games_hash[game.year_month] = []
-      end
-      all_games_hash[game.year_month] << game
-    end
+    @one_month_games = make_one_month_games_objects(@my_one_game_objects)
 
-    @one_month_games =
-      all_games_hash.map do |name, games|
-        OneMonthGames.new(name,games)
-      end
-
-    # 4人打ちの全期間の得点が入った配列
+    # 全期間の得点が入った配列
     @four_games_scores = scores(four_games, @tenhou_account.name)
-
-    # 3人打ちの全期間の得点が入った配列
     @three_games_scores = scores(three_games, @tenhou_account.name)
 
-    # 4人打ちの全期間の順位が入った配列
+    # 全期間の順位が入った配列
     @four_games_rankings = rankings(four_games, @tenhou_account.name)
-
-    # 3人打ちの全期間の順位が入った配列
     @three_games_rankings = rankings(three_games, @tenhou_account.name)
   end
 
