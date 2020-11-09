@@ -17,4 +17,5 @@ if Rails.env == "development"
     TenhouAccount.create!(name: name, team_id: 1)
   end
   Log.create!(Log.private_room_log(date: Time.new(2020,11,7)))
+  Log.create!(Log.private_room_log(date: Time.new(2020,11,8)))
 end
