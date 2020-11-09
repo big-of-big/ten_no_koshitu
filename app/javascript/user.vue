@@ -14,12 +14,6 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      start_date: '',
-      end_date: '',
-    }
-  },
   props: {
     tenhou_name: { type: String },
     three_games_string: {type: String},
