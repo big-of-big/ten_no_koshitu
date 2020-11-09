@@ -28,10 +28,9 @@ export default {
     }
   },
   props: {
-    tenhou_name: { type: String },
-    one_month_games: {type: String},
-    three_games_string: {type: String},
-    four_games_string: {type: String}
+    tenhouName: { type: String },
+    threeGamesString: {type: String},
+    fourGamesString: {type: String}
   },
   methods: {
     extract_tenhou_accounts_from: function(log) {
@@ -67,13 +66,13 @@ export default {
       return ary
     },
     games_score: function(games){
-      let scores = this.scores(games, this.tenhou_name)
+      let scores = this.scores(games, this.tenhouName)
       if(scores.length > 0){
         return scores.reduce((sum,currentValue) => sum + currentValue)
       }
     },
     games_average_ranking: function(games){
-      let rankings = this.rankings(games, this.tenhou_name)
+      let rankings = this.rankings(games, this.tenhouName)
       if(rankings.length > 0){
         let ranking_total = rankings.reduce((sum,currentValue) => sum + currentValue)
         return (Math.round(ranking_total / rankings.length * 100) / 100)
@@ -82,10 +81,10 @@ export default {
   },
   computed: {
     three_games: function() {
-      return JSON.parse(this.three_games_string)
+      return JSON.parse(this.threeGamesString)
     },
     four_games: function() {
-      return JSON.parse(this.four_games_string)
+      return JSON.parse(this.fourGamesString)
     },
     // ログが入った配列（他の情報はない）
     selected_three_games: function () {
