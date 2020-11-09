@@ -1,8 +1,5 @@
-// import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import User from '../user.vue'
-
-// Vue.use(TurbolinksAdapter)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
