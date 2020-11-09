@@ -7,7 +7,8 @@ class User < ApplicationRecord
          :recoverable, :validatable
 
   validates :name, presence: true
-  validates :email, presence: true
+  validates :loginname, presence: true, uniqueness: true
+  validates :email, uniqueness: true
 
   # deviseのメソッドをオーバーライドして、パスワード無しでユーザー情報を編集できるようにする
   def update_with_password(params)
@@ -18,5 +19,8 @@ class User < ApplicationRecord
     result = update(params)
     clean_up_passwords
     result
+  end
+  def email_required?
+    false
   end
 end
