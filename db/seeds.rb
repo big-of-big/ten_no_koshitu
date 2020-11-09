@@ -1,7 +1,7 @@
 def user_seed(name)
   {
     name: name,
-    email: "#{name}@example.com",
+    loginname: "#{name}login"
     password: "password",
     team_id: 1
   }
