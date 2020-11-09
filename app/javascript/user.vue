@@ -1,42 +1,42 @@
 <template>
   <tr>
     <td scope="row">
-      <a :href="url"> {{ tenhou_name }} </a>
+      <a :href="url"> {{ tenhouName }} </a>
     </td>
-    <td>{{ games_score(selected_four_games) }}</td>
-    <td>{{ games_average_ranking(selected_four_games) }}</td>
-    <td>{{ selected_four_games.length}}</td>
-    <td>{{ games_score(selected_three_games) }}</td>
-    <td>{{ games_average_ranking(selected_three_games) }}</td>
-    <td>{{ selected_three_games.length}}</td>
+    <td>{{ displayScore(selectedFourGames) }}</td>
+    <td>{{ averageRanking(selectedFourGames) }}</td>
+    <td>{{ selectedFourGames.length}}</td>
+    <td>{{ displayScore(selectedThreeGames) }}</td>
+    <td>{{ averageRanking(selectedThreeGames) }}</td>
+    <td>{{ selectedThreeGames.length}}</td>
   </tr>
 </template>
 
 <script>
 export default {
   props: {
-    tenhou_name: { type: String },
-    three_games_string: {type: String},
-    four_games_string: {type: String},
+    tenhouName: { type: String },
+    threeGamesString: {type: String},
+    fourGamesString: {type: String},
     term: {type: Object},
     url: {type: String}
   },
   methods: {
-    extract_tenhou_accounts_from: function(log) {
+    extractTenhouAccountsFrom: function(log) {
       let ary = log.split(' ')
       ary = ary.slice(6)
       let names = []
-      for(const name_and_score of ary) {
-        const m = name_and_score.match(/(?<name>.+)\((?<score>[+-]?[\d\.]+)/)
+      for(const nameAndScore of ary) {
+        const m = nameAndScore.match(/(?<name>.+)\((?<score>[+-]?[\d\.]+)/)
         names.push(m.groups.name)
       }
       return names
     },
     // 得点の配列を返す関数
-    scores: function(logs, tenhou_account_name){
+    scores: function(logs, tenhouAccountName){
       let ary = []
-      let escaped_name = tenhou_account_name.replace(/[.*+?^=!:${}()|[\]\/\\]/g, '\\$&')
-      let rg = new RegExp(escaped_name + '\\((?<score>.+?)\\)')
+      let escapedName = tenhouAccountName.replace(/[.*+?^=!:${}()|[\]\/\\]/g, '\\$&')
+      let rg = new RegExp(escapedName + '\\((?<score>.+?)\\)')
       for(const log of logs){
         const m = log.match(rg)
         const number = parseInt(m.groups.score, 10)
@@ -45,72 +45,72 @@ export default {
       return ary
     },
     // 順位の配列を返す関数
-    rankings: function(logs, tenhou_account_name){
+    rankings: function(logs, tenhouAccountName){
       let ary = []
       for(const log of logs){
-        let tenhou_account_names = this.extract_tenhou_accounts_from(log)
-        let ranking = tenhou_account_names.indexOf(tenhou_account_name) + 1
+        let tenhouAccountNames = this.extractTenhouAccountsFrom(log)
+        let ranking = tenhouAccountNames.indexOf(tenhouAccountName) + 1
         ary.push(ranking)
       }
       return ary
     },
-    games_score: function(games){
-      let scores = this.scores(games, this.tenhou_name)
+    displayScore: function(games){
+      let scores = this.scores(games, this.tenhouName)
       if(scores.length > 0){
         return scores.reduce((sum,currentValue) => sum + currentValue)
       }
     },
-    games_average_ranking: function(games){
-      let rankings = this.rankings(games, this.tenhou_name)
+    averageRanking: function(games){
+      let rankings = this.rankings(games, this.tenhouName)
       if(rankings.length > 0){
-        let ranking_total = rankings.reduce((sum,currentValue) => sum + currentValue)
-        return (Math.round(ranking_total / rankings.length * 100) / 100)
+        let rankingTotal = rankings.reduce((sum,currentValue) => sum + currentValue)
+        return (Math.round(rankingTotal / rankings.length * 100) / 100)
       }
     }
   },
   computed: {
-    three_games: function() {
-      return JSON.parse(this.three_games_string)
+    threeGames: function() {
+      return JSON.parse(this.threeGamesString)
     },
-    four_games: function() {
-      return JSON.parse(this.four_games_string)
+    fourGames: function() {
+      return JSON.parse(this.fourGamesString)
     },
     // ログが入った配列（他の情報はない）
-    selected_three_games: function () {
+    selectedThreeGames: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
       let ary = []
-      const three_games = this.three_games
+      const threeGames = this.threeGames
       if(this.term.all === true){
-        for(const three_game of three_games) {
-          ary.push(three_game.one_game_log)
+        for(const threeGame of threeGames) {
+          ary.push(threeGame.one_game_log)
         }
       } else {
         const start = new Date(this.term.start)
         const end = new Date(this.term.end)
-        for(const three_game of three_games) {
-          let date = new Date(three_game.date)
+        for(const threeGame of threeGames) {
+          let date = new Date(threeGame.date)
           if(date >= start && date <= end){
-            ary.push(three_game.one_game_log)
+            ary.push(threeGame.one_game_log)
           }
         }
       }
       return ary
     },
-    selected_four_games: function () {
+    selectedFourGames: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
       let ary = []
-      const four_games = this.four_games
+      const fourGames = this.fourGames
       if(this.term.all === true){
-        for(const four_game of four_games) {
-          ary.push(four_game.one_game_log)
+        for(const fourGame of fourGames) {
+          ary.push(fourGame.one_game_log)
         }
       } else {
         const start = new Date(this.term.start)
         const end = new Date(this.term.end)
-        for(const four_game of four_games) {
-          let date = new Date(four_game.date)
+        for(const fourGame of fourGames) {
+          let date = new Date(fourGame.date)
           if(date >= start && date <= end){
-            ary.push(four_game.one_game_log)
+            ary.push(fourGame.one_game_log)
           }
         }
       }
