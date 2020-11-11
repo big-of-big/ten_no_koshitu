@@ -1,7 +1,6 @@
 def user_seed(name)
   {
     name: name,
-    loginname: "#{name}login"
     password: "password",
     team_id: 1
   }

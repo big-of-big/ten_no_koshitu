@@ -10,10 +10,7 @@ h2
     = f.label :name
     = f.text_field :name, class: "form-control"
   .form-group
-    = f.label :loginname
-    = f.text_field :loginname, readonly: true, class: "form-control"
-  .form-group
-    = f.label :password, "パスワード（6文字以上）"
+    = f.label :password
     = f.password_field :password, autocomplete: "new-password", class: "form-control"
   .form-group
     = f.label :password_confirmation

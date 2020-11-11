@@ -3,10 +3,9 @@ class User < ApplicationRecord
   belongs_to :team, optional: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable
+  devise :database_authenticatable, :registerable, :validatable
 
-  validates :name, presence: true
-  validates :loginname, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
   # validates :email, uniqueness: true
 
   # deviseのメソッドをオーバーライドして、パスワード無しでユーザー情報を編集できるようにする
@@ -18,5 +17,13 @@ class User < ApplicationRecord
     result = update(params)
     clean_up_passwords
     result
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
   end
 end

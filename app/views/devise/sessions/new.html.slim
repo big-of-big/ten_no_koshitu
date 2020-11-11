@@ -2,8 +2,8 @@ h2
   | ログイン
 = form_with model: @user, url: login_path, local: true do |f|
   .form-group
-    = f.label :loginname
-    = f.text_field :loginname, autofocus: true, class: "form-control"
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: "form-control"
   .form-group
     = f.label :password
     = f.password_field :password, autocomplete: "current-password",class: "form-control"
