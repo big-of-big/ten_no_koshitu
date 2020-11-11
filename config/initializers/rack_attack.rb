@@ -10,8 +10,8 @@ class Rack::Attack
     end
   end
 
-  throttle('siginup/ip', :limit => 3, :period => 20.minutes) do |req|
-    if req.path == '/siginup' && req.post?
+  throttle('signup/ip', :limit => 3, :period => 20.minutes) do |req|
+    if req.path == '/signup' && req.post?
       req.ip
     end
   end
