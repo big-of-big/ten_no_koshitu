@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_082020) do
+ActiveRecord::Schema.define(version: 2020_11_13_125140) do
+
   create_table "logs", force: :cascade do |t|
     t.string "name", null: false
     t.text "content", null: false
@@ -48,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_082020) do
     t.string "encrypted_password", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
     t.integer "team_id"
-    t.string "name"
-    t.string "email"
   end
+
 end
