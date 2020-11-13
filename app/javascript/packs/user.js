@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import User from '../user.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
+  const app = new Vue({ // eslint-disable-line
     el: '#table',
     data: {
       all: true,
@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     components: { User },
     computed: {
-      term: function() {
+      term: function () {
         if (this.all === true) {
-          return {all: true}
+          return { all: true }
         } else {
-          return {start: this.start, end: this.end}
+          return { start: this.start, end: this.end }
         }
       },
       changeAll: {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.start = ''
             this.end = ''
           }
-        },
+        }
       },
       changeStart: {
         get: function () {

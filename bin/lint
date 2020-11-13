@@ -2,4 +2,4 @@
 
 bundle exec rubocop -a
 bundle exec slim-lint app/views
-npx eslint app/javascript
+npx eslint --fix app/javascript
