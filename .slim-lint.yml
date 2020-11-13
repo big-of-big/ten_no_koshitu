@@ -1,6 +1,8 @@
 linters:
   LineLength:
     max: 250
+  ConsecutiveControlStatements:
+    enabled: false
   RuboCop:
     enabled: true
     ignored_cops:
