@@ -6,7 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable
 
   validates :name, presence: true, uniqueness: true
-  # validates :email, uniqueness: true
 
   # deviseのメソッドをオーバーライドして、パスワード無しでユーザー情報を編集できるようにする
   def update_with_password(params)
