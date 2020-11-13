@@ -1,5 +1,5 @@
-require 'open-uri'
-require 'zlib'
+require "open-uri"
+require "zlib"
 
 class Log < ApplicationRecord
   include LogsHelper
@@ -22,7 +22,7 @@ class Log < ApplicationRecord
       end
 
     log = ""
-    Zlib::GzipReader.open(tempfile) {|gz|
+    Zlib::GzipReader.open(tempfile) { |gz|
       log = gz.read
     }
     { name: date.strftime("%Y/%m/%d"), content: log }
@@ -41,7 +41,7 @@ class Log < ApplicationRecord
             (team_tenhou_accounts & extract_tenhou_accounts_from(game)).sort! == extract_tenhou_accounts_from(game).sort!
           end
         unless team_logs.empty?
-          TeamLog.create!(name:Log.last.name, content:"#{team_logs}",team_id: team.id )
+          TeamLog.create!(name: Log.last.name, content: "#{team_logs}", team_id: team.id)
         end
       end
     end

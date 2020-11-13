@@ -6,13 +6,13 @@ module TenhouAccountsHelper
     # この配列に全期間の3人打ちと4人打ちのgame_objectが格納されている
     three_games = []
     four_games = []
-      my_one_game_objects.each do |my_one_game_object|
-        if my_one_game_object.type == 3
-          three_games << my_one_game_object
-        else
-          four_games << my_one_game_object
-        end
+    my_one_game_objects.each do |my_one_game_object|
+      if my_one_game_object.type == 3
+        three_games << my_one_game_object
+      else
+        four_games << my_one_game_object
       end
+    end
     { three_games: three_games, four_games: four_games }
   end
 
@@ -39,7 +39,7 @@ module TenhouAccountsHelper
 
     game_objects.each do |game_object|
       JSON.parse(game_object.content).each do |one_game_log|
-       one_game_objects << OneGame.new(game_object.name,one_game_log)
+        one_game_objects << OneGame.new(game_object.name, one_game_log)
       end
     end
     one_game_objects
@@ -59,7 +59,7 @@ module TenhouAccountsHelper
 
   def one_month_games(games_hash)
     games_hash.map do |name, games|
-      OneMonthGames.new(name,games)
+      OneMonthGames.new(name, games)
     end
   end
 end

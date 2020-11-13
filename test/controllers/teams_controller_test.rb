@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class TeamsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
@@ -10,5 +10,4 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     get teams_edit_url
     assert_response :success
   end
-
 end

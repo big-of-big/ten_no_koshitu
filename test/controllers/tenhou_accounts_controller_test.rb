@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class TenhouAccountsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -10,5 +10,4 @@ class TenhouAccountsControllerTest < ActionDispatch::IntegrationTest
     get tenhou_accounts_show_url
     assert_response :success
   end
-
 end

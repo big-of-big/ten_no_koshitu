@@ -1,6 +1,6 @@
 class Game
   attr_accessor :name, :content
-  def initialize(name,content)
+  def initialize(name, content)
     @name = name
     @content = content # 全てのログ（文字列）
   end
@@ -14,10 +14,6 @@ class OneGame
     @one_game_log = one_game_log
     @type = set_type(one_game_log)
     @date = name.to_date
-  end
-
-  def four_or_three(one_game_log)
-    logs = { name: game.name, content: JSON.parse(game.content) }
   end
 
   def set_type(one_game_log)
