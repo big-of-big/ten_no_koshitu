@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_070323) do
+ActiveRecord::Schema.define(version: 2020_11_14_071128) do
 
   create_table "logs", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_070323) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
     t.integer "team_id"
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end
