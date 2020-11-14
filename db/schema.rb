@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_11_13_125140) do
+
   create_table "logs", force: :cascade do |t|
     t.string "name", null: false
     t.text "content", null: false
@@ -51,4 +52,5 @@ ActiveRecord::Schema.define(version: 2020_11_13_125140) do
     t.string "name", null: false
     t.integer "team_id"
   end
+
 end
