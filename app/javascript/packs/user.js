@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import User from '../user.vue'
+import User from '../components/user.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({ // eslint-disable-line

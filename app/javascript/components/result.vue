@@ -26,7 +26,7 @@ import {
   rankings,
   displayScore,
   averageRanking
-} from './packs/calc'
+} from '../packs/calc'
 
 export default {
   data: function () {
