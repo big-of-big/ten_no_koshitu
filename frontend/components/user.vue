@@ -24,10 +24,10 @@ import {
 export default {
   props: {
     tenhouName: { type: String },
-    threeGamesString: {type: String},
-    fourGamesString: {type: String},
-    term: {type: Object},
-    url: {type: String}
+    threeGamesString: { type: String },
+    fourGamesString: { type: String },
+    term: { type: Object },
+    url: { type: String }
   },
   methods: {
     extractTenhouAccountsFrom: extractTenhouAccountsFrom,
@@ -37,27 +37,27 @@ export default {
     averageRanking: averageRanking
   },
   computed: {
-    threeGames: function() {
+    threeGames: function () {
       return JSON.parse(this.threeGamesString)
     },
-    fourGames: function() {
+    fourGames: function () {
       return JSON.parse(this.fourGamesString)
     },
     // ログが入った配列（他の情報はない）
     selectedThreeGames: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
-      let ary = []
+      const ary = []
       const threeGames = this.threeGames
-      if(this.term.all === true){
-        for(const threeGame of threeGames) {
+      if (this.term.all === true) {
+        for (const threeGame of threeGames) {
           ary.push(threeGame.one_game_log)
         }
       } else {
         const start = new Date(this.term.start)
         const end = new Date(this.term.end)
-        for(const threeGame of threeGames) {
-          let date = new Date(threeGame.date)
-          if(date >= start && date <= end){
+        for (const threeGame of threeGames) {
+          const date = new Date(threeGame.date)
+          if (date >= start && date <= end) {
             ary.push(threeGame.one_game_log)
           }
         }
@@ -66,18 +66,18 @@ export default {
     },
     selectedFourGames: function () {
       // 開始か終了の期間が変更されるとこの処理が実行される
-      let ary = []
+      const ary = []
       const fourGames = this.fourGames
-      if(this.term.all === true){
-        for(const fourGame of fourGames) {
+      if (this.term.all === true) {
+        for (const fourGame of fourGames) {
           ary.push(fourGame.one_game_log)
         }
       } else {
         const start = new Date(this.term.start)
         const end = new Date(this.term.end)
-        for(const fourGame of fourGames) {
-          let date = new Date(fourGame.date)
-          if(date >= start && date <= end){
+        for (const fourGame of fourGames) {
+          const date = new Date(fourGame.date)
+          if (date >= start && date <= end) {
             ary.push(fourGame.one_game_log)
           }
         }
@@ -87,4 +87,3 @@ export default {
   }
 }
 </script>
-

@@ -1,1 +1,1 @@
-import "../../stylesheets/tenhou_accounts"
+import '../../stylesheets/tenhou_accounts/show'

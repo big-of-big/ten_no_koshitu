@@ -32,13 +32,13 @@ export default {
   data: function () {
     return {
       start: '',
-      end: '',
+      end: ''
     }
   },
   props: {
     tenhouName: { type: String },
-    threeGamesString: {type: String},
-    fourGamesString: {type: String}
+    threeGamesString: { type: String },
+    fourGamesString: { type: String }
   },
   methods: {
     extractTenhouAccountsFrom: extractTenhouAccountsFrom,
@@ -48,10 +48,10 @@ export default {
     averageRanking: averageRanking
   },
   computed: {
-    threeGames: function() {
+    threeGames: function () {
       return JSON.parse(this.threeGamesString)
     },
-    fourGames: function() {
+    fourGames: function () {
       return JSON.parse(this.fourGamesString)
     },
     selectedThreeGames: function () {
@@ -60,10 +60,10 @@ export default {
       const start = new Date(this.start)
       const end = new Date(this.end)
       const threeGames = this.threeGames
-      let ary = []
-      for(const threeGame of threeGames) {
-        let date = new Date(threeGame.date)
-        if(date >= start && date <= end){
+      const ary = []
+      for (const threeGame of threeGames) {
+        const date = new Date(threeGame.date)
+        if (date >= start && date <= end) {
           ary.push(threeGame.one_game_log)
         }
       }
@@ -74,10 +74,10 @@ export default {
       const start = new Date(this.start)
       const end = new Date(this.end)
       const fourGames = this.fourGames
-      let ary = []
-      for(const fourGame of fourGames) {
-        let date = new Date(fourGame.date)
-        if(date >= start && date <= end){
+      const ary = []
+      for (const fourGame of fourGames) {
+        const date = new Date(fourGame.date)
+        if (date >= start && date <= end) {
           ary.push(fourGame.one_game_log)
         }
       }
