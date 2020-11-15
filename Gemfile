@@ -68,6 +68,7 @@ gem "slim-rails"
 gem "html2slim"
 gem "rails-i18n"
 gem "rack-attack"
+gem "sprockets", "~> 3.7.2"
 
 group :production do
   gem "pg"
