@@ -66,7 +66,6 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise"
 gem "slim-rails"
 gem "html2slim"
-gem "bootstrap-honoka-rails"
 gem "rails-i18n"
 gem "rack-attack"
 
