@@ -1,17 +1,24 @@
 @import "bootstrap";
 @import "nav.scss";
-html {
-  height: 100%;
-}
+
 body {
-  height: 100%;
-}
-.main {
-  height: 100%;
   background-color: #383A3F;
-  .container {
-    background-color:white ;
-    height: 100%;
-  }
 }
 
+.container {
+  background-color:white ;
+  min-height: calc(100vh - 70px);
+}
+
+footer {
+  color: white;
+  text-align: center;
+  height: 5rem;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
