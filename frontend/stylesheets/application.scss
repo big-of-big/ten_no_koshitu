@@ -1,1 +1,17 @@
-@import "bootstrap"
+@import "bootstrap";
+@import "nav.scss";
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+.main {
+  height: 100%;
+  background-color: #383A3F;
+  .container {
+    background-color:white ;
+    height: 100%;
+  }
+}
+
