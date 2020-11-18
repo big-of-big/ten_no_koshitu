@@ -6,6 +6,9 @@
 import 'bootstrap'
 import '../stylesheets/application'
 import '../images/favicon.ico'
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
 
 require('@rails/ujs').start()
 require('@rails/activestorage').start()
