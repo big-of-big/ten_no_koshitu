@@ -1,18 +1,23 @@
-h2
-  | アカウント登録
-= form_with model: resource, url: signup_path, local: true do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .form-group
-    = f.label :name
-    = f.text_field :name, autofocus: true, class: "form-control"
-  .form-group
-    = f.label :password
-    - if @minimum_password_length
-      |  (
-      = @minimum_password_length
-      | 文字以上)
-    = f.password_field :password, autocomplete: "new-password", class: "form-control"
-  .form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-  = f.submit "ユーザー登録", class: "btn btn-primary mb-3"
+= javascript_pack_tag "devise/registrations/new"
+
+.form
+  h2
+    | アカウント登録
+  = form_with model: resource, url: signup_path, local: true do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .form-group
+      = f.label :name
+      = f.text_field :name, autofocus: true, class: "form-control"
+    .form-group
+      = f.label :password, "パスワード(6文字以上)"
+      = f.password_field :password, autocomplete: "new-password", class: "form-control"
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+    .btn-register
+      .alert.alert-warning
+        p
+          |ログイン情報を紛失してもアカウントの再発行はできません。
+          br
+            |ユーザー名とパスワードは紛失しないようにご注意下さい。
+      = f.submit "ユーザー登録", class: "btn btn-success"
