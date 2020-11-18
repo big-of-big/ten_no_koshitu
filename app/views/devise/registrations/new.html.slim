@@ -6,8 +6,8 @@
   = form_with model: resource, url: signup_path, local: true do |f|
     = render "devise/shared/error_messages", resource: resource
     .form-group
-      = f.label :name
-      = f.text_field :name, autofocus: true, class: "form-control"
+      = f.label :name, "ユーザー名(ログインに使用します)"
+      = f.text_field :name, autofocus: true, placeholder: "例：tarou", class: "form-control"
     .form-group
       = f.label :password, "パスワード(6文字以上)"
       = f.password_field :password, autocomplete: "new-password", class: "form-control"
