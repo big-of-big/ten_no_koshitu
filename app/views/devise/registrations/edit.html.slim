@@ -1,26 +1,30 @@
+= javascript_pack_tag "devise/registrations/edit"
+= stylesheet_pack_tag "devise/registrations/edit"
+
 - if @user.errors.any?
   .alert.alert-danger
     - @user.errors.full_messages.each do |msg|
      li.mb-0 = msg
 
-h2
+h2.page-title
   | ユーザー設定
-= form_with model: resource, url: update_user_registration_path, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: "new-password", class: "form-control"
-  .form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-  = f.submit "保存", class: "btn btn-primary mb-3 px-5"
-= button_to "ログアウト", logout_path, method: :delete, class: "btn btn-secondary mb-3"
-= link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "btn btn-danger mb-3"
-.mb-3
-  = link_to "ホーム", root_path, class: "mr-2"
+.form
+  = form_with model: resource, url: update_user_registration_path, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :password, "新しいパスワード(6文字以上)"
+      = f.password_field :password, autocomplete: "new-password", class: "form-control"
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+    .btn-register
+      = f.submit "保存", class: "btn btn-success"
+.links
+  = link_to "ホーム", root_path
   - if current_user.team.present?
-    span|
-    = link_to "チーム設定", edit_team_path(current_user.team), class: "ml-2"
-    = button_to "#{current_user.team.name}から脱退する", teams_join_path, method: :delete,  class: "btn btn-secondary"
+      = link_to "チーム設定", edit_team_path(current_user.team)
+      = link_to "#{current_user.team.name}から脱退する", teams_join_path, method: :delete
+  = link_to "ログアウト", logout_path, method: :delete
+  = link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete

@@ -34,13 +34,45 @@ footer {
 }
 
 .form {
-  label {
-    margin-bottom: 0.25rem;
+  margin: 0 auto;
+  width: 70%;
+
+  .form-group {
+    margin-bottom: 1rem;
+    label {
+      font-size: 1.25rem;
+    }
+  }
+
+  .btn-register {
+    text-align: center;
+    margin-top: 2rem;
+    p {
+      margin-bottom: 0;
+    }
+    .btn {
+      width: 12rem;
+      height: 3rem;
+      font-size: 1.25rem;
+    }
   }
 }
 
+.alert {
+  margin-top: 1rem;
+  p {
+    margin-bottom: 0;
+  }
+  text-align: center;
+}
 .alert-success {
   background-color: #2dcc77;
   border-color: #2dcc77;
   color: white;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 1.75rem;
+  margin-bottom: 2.5rem;
 }

@@ -2,7 +2,7 @@
 = stylesheet_pack_tag "devise/sessions/new"
 
 .form
-  h2
+  h2.page-title
     | ログイン
   = form_with model: @user, url: login_path, local: true do |f|
     .form-group
