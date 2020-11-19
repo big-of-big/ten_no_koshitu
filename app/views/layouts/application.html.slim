@@ -12,7 +12,10 @@ html
     header
       nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
         .container-fluid
-          = link_to "天の個室", root_path, class: "navbar-brand"
+          - if user_signed_in? && current_user.team.present?
+            = link_to current_user.team.name, root_path, class: "navbar-brand"
+          - else
+            = link_to "天の個室", root_path, class: "navbar-brand"
         .container-fluid.d-flex.justify-content-end
           - if user_signed_in?
             = link_to "プロフィール変更", edit_user_registration_path, class: "btn btn-success mr-3"
