@@ -11,9 +11,9 @@
             | 全期間
         .d-flex
           p.first 期間を選択
-          datepicker v-model="changeStart" :format="DatePickerFormat" :language="ja" placeholder="開始日"
+          input type="date" v-model="changeStart"
           p 〜
-          datepicker v-model="changeEnd" :format="DatePickerFormat" :language="ja" placeholder="終了日"
+          input type="date" v-model="changeEnd"
 
         table.table.table-hover
           thead
