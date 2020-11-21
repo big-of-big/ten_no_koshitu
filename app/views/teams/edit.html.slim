@@ -1,17 +1,28 @@
-h2
-  | チーム設定
-= form_with model: @team, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  = f.submit "更新", class: "btn btn-primary mb-3"
-- if @team.tenhou_accounts.present?
-  h3
-    | メンバー一覧
-  - @team.tenhou_accounts.each do |tenhou_account|
-    p
-      = tenhou_account.name
-      = link_to "編集", edit_tenhou_account_path(tenhou_account), class: "btn btn-secondary mx-2"
-      = link_to "削除", tenhou_account_path(tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: "btn btn-secondary"
-= link_to "メンバーを追加", new_tenhou_account_path, class: "btn btn-primary mb-3"
-= link_to "チームへ招待する", teams_invite_path, class: "btn btn-primary mb-3 ml-3"
+= javascript_pack_tag "teams/edit"
+= stylesheet_pack_tag "teams/edit"
+
+.form
+  h2.page-title
+    | チーム設定
+  = form_with model: @team, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .btn-register
+      = f.submit "更新", class: "btn btn-success"
+
+  - if @team.tenhou_accounts.present?
+  table class="table"
+    thead
+      tr
+        th scope="col" アカウント名
+        th scope="col" 設定
+    tbody
+    - @team.tenhou_accounts.each do |tenhou_account|
+      tr
+        td = tenhou_account.name
+        td = link_to "編集", edit_tenhou_account_path(tenhou_account)
+
+.add-btn
+  = link_to "メンバーを追加", new_tenhou_account_path, class: "btn btn-success"
+  = link_to "チームへ招待する", teams_invite_path, class: "btn btn-success"

@@ -1,0 +1,18 @@
+@import "team-form.scss";
+
+a {
+  margin-right:2rem;
+  color: black;
+  &:hover {
+    color: #2dcc77;
+  }
+}
+
+table {
+  margin-top: 4rem;
+}
+
+.add-btn {
+  text-align: center;
+  margin-top: 3rem;
+}

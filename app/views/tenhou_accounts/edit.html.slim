@@ -10,3 +10,6 @@ h2
     = f.label :name
     = f.text_field :name, autofocus: true, class: "form-control"
   = f.submit "保存", class: "btn btn-primary mb-3"
+
+.links
+  = link_to "チームから削除", tenhou_account_path(@tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: "btn btn-secondary"

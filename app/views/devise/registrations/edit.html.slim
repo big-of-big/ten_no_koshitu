@@ -25,6 +25,6 @@ h2.page-title
   = link_to "ホーム", root_path
   - if current_user.team.present?
       = link_to "チーム設定", edit_team_path(current_user.team)
-      = link_to "#{current_user.team.name}から脱退する", teams_join_path, method: :delete
+      = link_to "チームから脱退する", teams_join_path, method: :delete
   = link_to "ログアウト", logout_path, method: :delete
   = link_to "アカウント削除", retirement_path, data: { confirm: "本当によろしいですか？" }, method: :delete
