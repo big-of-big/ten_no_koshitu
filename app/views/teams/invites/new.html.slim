@@ -1,12 +1,17 @@
-h2 チームへ招待
-p
-  | #{current_user.team.name}のチームID: #{current_user.team.join_key}
+= javascript_pack_tag "teams/invites/new"
+= stylesheet_pack_tag "teams/invites/new"
 
-p
-  | チームIDをチームに入りたい人に教えてあげましょう。
-p
-  | その人がチームIDを入力することでチームに参加できます。
-p
+h2.page-title
+  |チームへ招待
+.alert.alert-warning.notice
+  h3
+    | #{current_user.team.name}のチームID: #{current_user.team.join_key}
+
+  p
+    | チームに入りたい人チームIDに教えてあげましょう。
+  p
+    | その人がチームIDを入力することでチームに参加できます。
+
+.links
   = link_to "チーム設定", edit_team_path(current_user.team)
-p
   = link_to "トップページ", root_path
