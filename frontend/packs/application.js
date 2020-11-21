@@ -4,6 +4,8 @@
 // that code so it'll be compiled.
 
 import 'bootstrap'
+import 'flatpickr'
+
 import '../stylesheets/application'
 import '../images/favicon.ico'
 import '../images/tenhou.jpg'
@@ -21,3 +23,5 @@ require('channels')
 //
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+
+

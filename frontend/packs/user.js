@@ -1,5 +1,7 @@
 import Vue from 'vue/dist/vue.esm'
 import User from '../components/user.vue'
+import Datepicker from 'vuejs-datepicker'
+import { ja } from 'vuejs-datepicker/dist/locale'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({ // eslint-disable-line
@@ -7,9 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     data: {
       all: true,
       start: '',
-      end: ''
+      end: '',
+      DatePickerFormat: 'yyyy-MM-dd',
+      ja:ja
     },
-    components: { User },
+    components: {
+      User,
+      Datepicker
+    },
     computed: {
       term: function () {
         if (this.all === true) {

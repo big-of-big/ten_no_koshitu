@@ -1,14 +1,14 @@
 <template>
   <tr>
-    <td scope="row">
+    <td class="user-name" scope="row">
       <a :href="url"> {{ tenhouName }} </a>
     </td>
-    <td>{{ displayScore(selectedFourGames) }}</td>
-    <td>{{ averageRanking(selectedFourGames) }}</td>
-    <td>{{ selectedFourGames.length}}</td>
-    <td>{{ displayScore(selectedThreeGames) }}</td>
-    <td>{{ averageRanking(selectedThreeGames) }}</td>
-    <td>{{ selectedThreeGames.length}}</td>
+    <td class="text-right">{{ displayScore(selectedFourGames) }}</td>
+    <td class="text-right">{{ averageRanking(selectedFourGames) }}</td>
+    <td class="text-right">{{ selectedFourGames.length}}</td>
+    <td class="text-right">{{ displayScore(selectedThreeGames) }}</td>
+    <td class="text-right">{{ averageRanking(selectedThreeGames) }}</td>
+    <td class="text-right">{{ selectedThreeGames.length}}</td>
   </tr>
 </template>
 
@@ -87,3 +87,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .user-name {
+    width: 9rem;
+  }
+</style>

@@ -12,3 +12,24 @@
   }
 }
 
+.type {
+  padding-left: 4rem !important;
+}
+
+.d-flex {
+  p {
+    line-height: 33px;
+  }
+
+  .first {
+    margin-right: 0.5rem;
+  }
+  input {
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+  }
+}
+
+#table {
+  margin-top: 3rem;
+}
