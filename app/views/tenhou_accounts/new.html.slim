@@ -1,16 +1,21 @@
+= javascript_pack_tag "tenhou_accounts/new"
+= stylesheet_pack_tag "tenhou_accounts/new"
+
 - if @tenhou_account.errors.any?
   .alert.alert-danger
     - @tenhou_account.errors.full_messages.each do |msg|
      li.mb-0 = msg
 
-h2
-  | チームへ追加
-= form_with model: @tenhou_account, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  = f.submit "追加", class: "btn btn-primary mb-3"
-p
-  = link_to "チーム設定", edit_team_path(current_user.team)
-p
-  = link_to "トップページ", root_path
+
+.form
+  h2.page-title
+    | メンバーを追加
+  = form_with model: @tenhou_account, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .btn-register
+      = f.submit "追加", class: "btn btn-success"
+  .links
+    = link_to "チーム設定", edit_team_path(current_user.team)
+    = link_to "トップページ", root_path
