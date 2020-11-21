@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "nav.scss";
+@import "form.scss";
 
 body {
   // background-color: #666666;
@@ -31,31 +32,6 @@ footer {
 .btn-success {
   background-color: #2dcc77;
   border-color: #2dcc77;
-}
-
-.form {
-  margin: 0 auto;
-  width: 70%;
-
-  .form-group {
-    margin-bottom: 1rem;
-    label {
-      font-size: 1.25rem;
-    }
-  }
-
-  .btn-register {
-    text-align: center;
-    margin-top: 2rem;
-    p {
-      margin-bottom: 0;
-    }
-    .btn {
-      width: 12rem;
-      height: 3rem;
-      font-size: 1.25rem;
-    }
-  }
 }
 
 .alert {

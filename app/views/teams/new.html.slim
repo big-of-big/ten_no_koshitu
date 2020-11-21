@@ -1,11 +1,14 @@
 = javascript_pack_tag "teams/new"
 = stylesheet_pack_tag "teams/new"
 
-h2.page-title
-  | チーム作成
-= form_with model: @team, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, autofocus: true, class: "form-control"
-  = f.submit "新規作成", class: "btn btn-primary mb-3"
-= link_to "ホームへ戻る", root_path
+.form
+  h2.page-title
+    | チーム作成
+  = form_with model: @team, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, autofocus: true, class: "form-control"
+    .btn-register
+      = f.submit "新規作成", class: "btn btn-success"
+  .links
+    = link_to "ホームへ戻る", root_path

@@ -1,0 +1,13 @@
+.links {
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+  margin-top: 3rem;
+  a {
+    margin-right:2rem;
+    color: black;
+    &:hover {
+      color: #2dcc77;
+    }
+  }
+}
