@@ -1,8 +1,14 @@
-h2 チームに参加
+= javascript_pack_tag "teams/joins/new"
+= stylesheet_pack_tag "teams/joins/new"
 
-= form_with url: teams_join_path, local: true do |f|
-  .form-group
-    = f.label :team_id, "チームID"
-    = f.text_field :team_id, class: "form-control", value: flash[:join_key]
-  = f.submit "参加", class: "btn btn-primary"
-= link_to "ホームへ戻る", root_path
+.form
+  h2.page-title
+    | チームに参加
+  = form_with url: teams_join_path, local: true do |f|
+    .form-group
+      = f.label :team_id, "チームID"
+      = f.text_field :team_id, class: "form-control", value: flash[:join_key]
+    .btn-register
+      = f.submit "参加", class: "btn btn-success"
+  .links
+    = link_to "ホームへ戻る", root_path

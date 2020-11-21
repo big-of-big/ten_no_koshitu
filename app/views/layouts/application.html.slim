@@ -18,7 +18,7 @@ html
             = link_to "天の個室", root_path, class: "navbar-brand"
         .container-fluid.d-flex.justify-content-end
           - if user_signed_in?
-            = link_to "プロフィール変更", edit_user_registration_path, class: "btn btn-success mr-3"
+            = link_to "ユーザー設定", edit_user_registration_path, class: "btn btn-success mr-3"
           - else
             = link_to "アカウント登録", signup_path, class: "btn btn-success mr-3"
             = link_to "ログイン", login_path, class: "btn btn-success mr-3"
