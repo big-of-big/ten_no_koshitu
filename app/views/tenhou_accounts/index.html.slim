@@ -9,7 +9,7 @@
           input#all-term type="checkbox" v-model="changeAll" class="form-check-input"
           label for="all-term" class="form-check-label"
             | 全期間
-        .d-flex
+        .d-flex.term
           p.first 期間を選択
           input type="date" v-model="changeStart"
           p 〜
@@ -19,8 +19,12 @@
           thead
             tr
               th
-              th class="text-center type" scope="col" colspan="3" 4人打ち
-              th class="text-center type" scope="col" colspan="3" 3人打ち
+              th
+              th class="text-right" 4人打ち
+              th
+              th
+              th class="text-right" 3人打ち
+              th
             tr
               th scope="col" ユーザー
               th class="text-right" scope="col" 得点
