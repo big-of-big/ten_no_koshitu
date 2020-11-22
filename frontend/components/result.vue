@@ -4,18 +4,20 @@
     <input type="date" v-model="start">
     <span>〜</span>
     <input type="date" v-model="end">
-    <p>
-      4人打ち
-      得点:{{ displayScore(selectedFourGames) }}
-      平均順位:{{ averageRanking(selectedFourGames) }}
-      対戦数:{{ selectedFourGames.length}}
-    </p>
-    <p>
-      3人打ち
-      得点:{{ displayScore(selectedThreeGames) }}
-      平均順位:{{ averageRanking(selectedThreeGames) }}
-      対戦数:{{ selectedThreeGames.length}}
-    </p>
+    <div class="data">
+      <p>
+        4人打ち
+        得点:{{ displayScore(selectedFourGames) }}
+        平均順位:{{ averageRanking(selectedFourGames) }}
+        対戦数:{{ selectedFourGames.length}}
+      </p>
+      <p>
+        3人打ち
+        得点:{{ displayScore(selectedThreeGames) }}
+        平均順位:{{ averageRanking(selectedThreeGames) }}
+        対戦数:{{ selectedThreeGames.length}}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -86,3 +88,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .data {
+    margin-top: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+</style>
