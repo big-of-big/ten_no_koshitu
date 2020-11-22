@@ -52,3 +52,27 @@ footer {
   margin-top: 1.75rem;
   margin-bottom: 2.5rem;
 }
+
+.pagination {
+  .kaminari {
+    margin: 2rem auto 0 auto;
+    li {
+      a {
+        border: none;
+        color: #696969;
+        border-radius: 30px;
+        &:hover {
+          background-color: #a7f797;
+        }
+      }
+    }
+    .page-link {
+        border-radius: 50px;
+    }
+    .active {
+      a {
+        background-color: #2dcc77;
+      }
+    }
+  }
+}
