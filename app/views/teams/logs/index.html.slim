@@ -1,11 +1,14 @@
+h2
 - if @team_logs.present?
-  .card
-    - @team_logs.each do |log|
+  - @team_logs.each do |log|
+    .card.mt-3
       .card-header
-       = log[:name]
-      .card-body
+        = log[:name]
+      .card-body.pt-3.pb-2
         - log[:content].each do |one_game|
-          p.card-text = one_game
+          p.card-text.mb-2 = one_game
 - else
   p
     | ログがありません
+  p
+    | チームメンバーで天鳳を打ちましょう
