@@ -68,7 +68,9 @@ gem "slim-rails"
 gem "html2slim"
 gem "rails-i18n"
 gem "rack-attack"
-gem "sprockets", "~> 3.7.2"
+gem "sprockets", "~> 3.7.2" # assetsディレクトリの削除に必要
+gem "kaminari"
+
 
 group :production do
   gem "pg"
