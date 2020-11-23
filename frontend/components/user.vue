@@ -87,9 +87,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .user-name {
-    width: 9rem;
-  }
-</style>

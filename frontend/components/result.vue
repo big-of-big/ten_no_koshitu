@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vue-term">
     <span>期間を選択</span>
     <input type="date" v-model="start">
     <span>〜</span>
@@ -88,10 +88,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .data {
-    margin-top: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-</style>
