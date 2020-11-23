@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       start: '',
       end: '',
       DatePickerFormat: 'yyyy-MM-dd',
-      ja:ja
+      ja: ja
     },
     components: {
       User,

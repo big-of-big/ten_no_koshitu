@@ -7,14 +7,14 @@
 ## インストール
 
 開発環境ではSQLite3を使用しています。
-SQLite3では`$bin/setup`でseedが入らないのでので`$ rails db:seed`を実行してください。
+SQLite3では`$bin/setup`でseedが入らないので`$ rails db:seed`を実行してください。
 ```
 $ bin/setup
 $ rails db:seed
 $ rails server
 ```
 
-ローカル環境で動かす場合は以下の情報でログインください。
+以下の情報でログインください。
 ```
 ユーザー名: komugi
 パスワード: password

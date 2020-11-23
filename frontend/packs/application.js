@@ -9,9 +9,9 @@ import 'flatpickr'
 import '../stylesheets/application'
 import '../images/favicon.ico'
 import '../images/tenhou.jpg'
-import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
-import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
 
 require('@rails/ujs').start()
 require('@rails/activestorage').start()
@@ -23,5 +23,3 @@ require('channels')
 //
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
-
-
