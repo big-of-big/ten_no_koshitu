@@ -18,12 +18,35 @@ p
   br
     | チームを作ったその日から、メンバー全員の成績を追跡します。
 
-h3
-  | チームの成績が一目瞭然
-h3
-  | 任意の期間を選択できる
-h3
-  | チームのログを見れる
+.explanation-container
+  .explanation
+    h3
+      | あなたは天鳳を打つだけ
+    p
+      | 今までは手動で入力して計算していた得点、平均順位、対戦数を全て自動で計算します。
+    p
+      | もう計算が合わなくて揉めることはありません。
+  = image_pack_tag "team.png", class: "feature-image"
+.explanation-container
+  = image_pack_tag "term.png", class: "term-image"
+  .explanation
+    .text-container
+      h3
+        | 任意の期間を選択できる
+      p
+        | 総合成績だけではありません。
+      p
+        | ある1日だけの成績や特定の期間の成績など、あなたが必要とする成績を表示することができます。
+.explanation-container.log-container
+  .log-explanation
+    .log-container
+      h3
+        | チームのログを見れる
+      p
+        | チームに入ったその日から、チームの成績だけを追跡します。
+      p
+        | ログは加工せずにそのまま表示しているため、細かい情報も見逃しません。
+  = image_pack_tag "log.png", class: "log-image"
 
 h2
   | よくある質問
