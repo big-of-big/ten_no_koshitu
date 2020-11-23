@@ -5,8 +5,12 @@
 ユーザーは自分やチームメイトの成績を見ることができ、
 エクセルとは違って手動で成績を入力する必要がないことが特徴です。
 ## インストール
+
+開発環境ではSQLite3を使用しています。
+SQLite3では`$bin/setup`でseedが入らないのでので`$ rails db:seed`を実行してください。
 ```
 $ bin/setup
+$ rails db:seed
 $ rails server
 ```
 
