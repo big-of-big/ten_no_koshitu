@@ -38,7 +38,7 @@ class TenhouAccountsController < ApplicationController
     @tenhou_account.team = current_user.team
 
     if @tenhou_account.save
-      redirect_to root_path, notice: "チームにメンバーを追加しました"
+      redirect_to root_path, notice: "チームにメンバーを追加しました。"
     else
       render :new
     end
@@ -46,7 +46,7 @@ class TenhouAccountsController < ApplicationController
 
   def update
     if @tenhou_account.update(tenhou_account_params)
-      redirect_to edit_team_path(@tenhou_account.team), notice: "天鳳アカウントを変更しました"
+      redirect_to edit_team_path(@tenhou_account.team), notice: "天鳳アカウントを変更しました。"
     else
       render :edit
     end

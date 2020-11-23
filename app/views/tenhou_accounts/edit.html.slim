@@ -1,15 +1,22 @@
+= javascript_pack_tag "tenhou_accounts/edit"
+= stylesheet_pack_tag "tenhou_accounts/edit"
+
 - if @tenhou_account.errors.any?
   .alert.alert-danger
     - @tenhou_account.errors.full_messages.each do |msg|
      li.mb-0 = msg
 
-h2
+h2.page-title
   | アカウント名変更
-= form_with model: @tenhou_account, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, autofocus: true, class: "form-control"
-  = f.submit "保存", class: "btn btn-primary mb-3"
+.form
+  = form_with model: @tenhou_account, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, autofocus: true, class: "form-control"
+    .btn-register
+      = f.submit "保存", class: "btn btn-success"
 
-.links
-  = link_to "チームから削除", tenhou_account_path(@tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: "btn btn-secondary"
+  .links
+    = link_to "チームから削除", tenhou_account_path(@tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }
+    = link_to "ホーム", root_path
+    = link_to "チーム設定", edit_team_path(current_user.team)
