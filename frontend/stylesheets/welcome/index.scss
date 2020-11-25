@@ -107,3 +107,31 @@ h2 {
     }
   }
 }
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .top {
+    display: block;
+    .concept {
+      padding-top: 0;
+    }
+  }
+  .tenhou-image {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .feature-image {
+    width: 33rem;
+    height: 17rem;
+  }
+
+  .term-image {
+    width: 33rem;
+    height: 21rem;
+  }
+
+  .log-image {
+    width: 37rem;
+    height: 18rem;
+  }
+}
