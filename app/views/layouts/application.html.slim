@@ -10,19 +10,23 @@ html
     = favicon_pack_tag "favicon.ico"
     = stylesheet_pack_tag "application"
   body
-    header
-      nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
-        .container-fluid
-          - if user_signed_in? && current_user.team.present?
-            = link_to current_user.team.name, root_path, class: "navbar-brand"
-          - else
-            = link_to "天の個室", root_path, class: "navbar-brand"
-        .container-fluid.d-flex.justify-content-end
-          - if user_signed_in?
-            = link_to "ユーザー設定", edit_user_registration_path, class: "btn btn-success mr-3"
-          - else
-            = link_to "アカウント登録", signup_path, class: "btn btn-success mr-3"
-            = link_to "ログイン", login_path, class: "btn btn-success mr-3"
+    nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+      div class="container-fluid"
+        - if user_signed_in? && current_user.team.present?
+          = link_to current_user.team.name, root_path, class: "navbar-brand"
+        - else
+          = link_to "天の個室", root_path, class: "navbar-brand"
+        button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+          span class="navbar-toggler-icon"
+        div class="collapse navbar-collapse" id="navbarSupportedContent"
+          .d-flex.ml-auto
+            - if user_signed_in?
+              = link_to "ユーザー設定", edit_user_registration_path, class: "btn btn-success mr-3"
+              = link_to "チーム設定", edit_team_path(current_user.team), class: "btn btn-success mr-3"
+            - else
+              = link_to "アカウント登録", signup_path, class: "btn btn-success mr-3"
+              = link_to "ログイン", login_path, class: "btn btn-success mr-3"
+
     .container
       - if flash.notice
         .alert.alert-success.mt-3 = flash.notice
