@@ -1,7 +1,41 @@
-nav {
+header {
+  background-color: black;
   height: 5rem;
-  padding: 0 1rem;
-  .navbar-brand {
-    font-size: 1.75rem;
+  padding-right: 1rem;
+  .header-wrapper {
+    display: flex;
+    justify-content:space-between;
+    padding-top: 1.25rem;
+    .app-name {
+      color: white;
+      text-decoration: none;
+      font-size: 1.75rem;
+      padding-left: 1rem;
+    }
+    .header-right {
+      .btn {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    height: 5rem;
+    .header-wrapper {
+      display: flex;
+      justify-content:space-around;
+      padding-top: 1.25rem;
+      .app-name {
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+      }
+      .mobile-btn {
+        font-size: 0.75rem;
+        padding: 7px 10px;
+      }
+    }
   }
 }
