@@ -2,12 +2,7 @@
 @import "nav.scss";
 @import "form.scss";
 
-body {
-  // background-color: #666666;
-}
-
 .container {
-  background-color:white ;
   min-height: calc(100vh - 70px);
 }
 
@@ -28,6 +23,15 @@ footer {
     margin-bottom: 0;
   }
 }
+
+@media screen and (max-width: 480px) {
+  footer {
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
 
 .btn-success {
   background-color: #2dcc77;
