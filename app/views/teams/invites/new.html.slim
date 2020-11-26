@@ -12,6 +12,8 @@ h2.page-title
   p
     | その人がチームIDを入力することでチームに参加できます。
 
-.links
-  = link_to "チーム設定", edit_team_path(current_user.team)
-  = link_to "トップページ", root_path
+.links.row
+    .col-lg-3.offset-lg-3.link-wrapper
+      = link_to "チーム設定", edit_team_path(current_user.team)
+    .col-lg-2.link-wrapper
+      = link_to "ホーム", root_path

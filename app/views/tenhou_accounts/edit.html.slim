@@ -16,7 +16,11 @@ h2.page-title
     .btn-register
       = f.submit "保存", class: "btn btn-success"
 
-  .links
-    = link_to "チームから削除", tenhou_account_path(@tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }
-    = link_to "ホーム", root_path
-    = link_to "チーム設定", edit_team_path(current_user.team)
+  .links.row
+    .col-lg-2.offset-lg-3.link-wrapper
+      = link_to "削除", tenhou_account_path(@tenhou_account), method: :delete, data: { confirm: "本当に削除してよろしいですか？" }
+    .col-lg-2.link-wrapper
+      = link_to "ホーム", root_path
+    .col-lg-3.link-wrapper
+      = link_to "チーム設定", edit_team_path(current_user.team)
+
