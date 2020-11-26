@@ -15,6 +15,8 @@
       = f.text_field :name, class: "form-control"
     .btn-register
       = f.submit "追加", class: "btn btn-success"
-  .links
-    = link_to "チーム設定", edit_team_path(current_user.team)
-    = link_to "トップページ", root_path
+  .links.row
+    .col-lg-5.offset-lg-2.link-wrapper
+      = link_to "チーム設定", edit_team_path(current_user.team)
+    .col-lg-5.link-wrapper
+      = link_to "トップページ", root_path

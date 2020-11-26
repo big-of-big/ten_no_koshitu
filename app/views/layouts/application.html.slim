@@ -15,9 +15,9 @@ html
         = link_to "天の個室", root_path, class: "app-name"
         .header-right
           - if user_signed_in?
-            = link_to "個人設定", edit_user_registration_path, class: "btn btn-success"
+            = link_to "個人設定", edit_user_registration_path, class: "btn btn-success mobile-btn first-btn"
             - if current_user.team.present?
-              = link_to "チーム設定", edit_team_path(current_user.team), class: "btn btn-success"
+              = link_to "チーム設定", edit_team_path(current_user.team), class: "btn btn-success mobile-btn"
           - else
             = link_to "新規登録", signup_path, class: "btn btn-success mobile-btn first-btn"
             = link_to "ログイン", login_path, class: "btn btn-success mobile-btn"
