@@ -42,7 +42,7 @@ p
 .row.log-row
   .col-lg-6.log-feature
     h3
-      | チームのログを確認できる
+      | チームのログを見れる
     p
       | チームに入ったその日から、チームの成績だけを追跡します。
     p
@@ -54,13 +54,19 @@ h2
   | よくある質問
 
 .d-flex.color
-  a class="btn question" type="button" data-toggle="collapse" data-target="#answer2" aria-expanded="false" aria-controls="answer2"
+  a class="btn question" type="button" data-toggle="collapse" data-target="#answer1" aria-expanded="false" aria-controls="answer1"
     | Q. 過去の成績は取得できますか？
+  i.fas.fa-angle-down.icon
+.collapse#answer1
+  p
+    | A.できません。チームを作った日から成績の取得が始まります。
+.d-flex.color
+  a class="btn question" type="button" data-toggle="collapse" data-target="#answer2" aria-expanded="false" aria-controls="answer2"
+    | Q. 成績はいつ更新されますか？
   i.fas.fa-angle-down.icon
 .collapse#answer2
   p
-    | A.できません。チームを作った日から成績の取得が始まります。
-
+    | A.毎日夜12時半に成績が更新されます。
 .d-flex.color
   a class="btn question" type="button" data-toggle="collapse" data-target="#answer3" aria-expanded="false" aria-controls="answer3"
     | Q. チームメンバー全員が天の個室のアカウントを作成する必要はありますか？
