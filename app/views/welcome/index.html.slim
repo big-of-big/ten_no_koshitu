@@ -1,8 +1,8 @@
 = javascript_pack_tag "welcome/index"
 = stylesheet_pack_tag "welcome/index"
 
-.top
-  .concept
+.top.row
+  .concept.col-lg-6
     p
       | チームを作って天鳳を打つだけ！
     p
@@ -10,7 +10,8 @@
     p
       |もう手動で入力する必要はありません！
     = link_to "アカウント作成(無料)", signup_path, class: "btn btn-success important-btn"
-  = image_pack_tag "tenhou.jpg", class: "tenhou-image"
+  .col-lg-6
+    = image_pack_tag "tenhou.jpg", class: "tenhou-image"
 h2
   | 天の個室とは
 p
@@ -25,7 +26,7 @@ p
     p
       | 今までは手動で入力して計算していた得点、平均順位、対戦数を全て自動で計算します。
     p
-      | もう計算が合わなくて揉めることはありません。
+      | 計算が合わなくて揉めることはもうありません。
   = image_pack_tag "team.png", class: "feature-image"
 .explanation-container
   = image_pack_tag "term.png", class: "term-image"
