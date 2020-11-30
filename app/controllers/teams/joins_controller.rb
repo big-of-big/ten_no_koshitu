@@ -7,9 +7,9 @@ class Teams::JoinsController < ApplicationController
     if team.present?
       current_user.team = team
       current_user.save!
-      redirect_to root_path, notice: "チームに参加しました"
+      redirect_to root_path, notice: "チームに参加しました。"
     else
-      flash.now[:alert] =  "チームが見つかりませんでした"
+      flash.now[:alert] =  "チームが見つかりませんでした。"
       flash.now[:join_key] = join_key
       render :new
     end
@@ -17,6 +17,6 @@ class Teams::JoinsController < ApplicationController
   def destroy
     current_user.team = nil
     current_user.save!
-    redirect_to root_path, notice: "チームから脱退しました"
+    redirect_to root_path, notice: "チームから脱退しました。"
   end
 end

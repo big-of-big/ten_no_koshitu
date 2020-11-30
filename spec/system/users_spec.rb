@@ -55,7 +55,7 @@ RSpec.describe "Users", type: :system do
     it "チームから脱退できる" do
       visit edit_user_registration_path(user)
       click_link "チームから脱退する"
-      expect(page).to have_content "チームから脱退しました"
+      expect(page).to have_content "チームから脱退しました。"
     end
   end
 end
