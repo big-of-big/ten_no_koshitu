@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Users", type: :system do
+RSpec.describe "UserAuthentications", type: :system do
 
   context "入力値が正しい場合" do
     it "ユーザーが新規登録できる" do
@@ -19,6 +19,17 @@ RSpec.describe "Users", type: :system do
       fill_in "パスワード", with: "password"
       click_button "ログイン"
       expect(page).to have_content "ログインしました。"
+    end
+
+    it "ログアウトできる" do
+      user = User.create!(name: "komugi", password: "password")
+      visit login_path
+      fill_in "ユーザー名", with: "komugi"
+      fill_in "パスワード", with: "password"
+      click_button "ログイン"
+      visit edit_user_registration_path(user)
+      click_link "ログアウト"
+      expect(page).to have_content "ログアウトしました。"
     end
   end
 
