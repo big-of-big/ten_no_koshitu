@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "UserAuthentications", type: :system do
-
   context "入力値が正しい場合" do
     it "ユーザーが新規登録できる" do
       visit signup_path
