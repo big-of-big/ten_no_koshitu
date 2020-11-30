@@ -1,3 +1,5 @@
+exclude:
+  - app/views/kaminari/*.slim
 linters:
   LineLength:
     max: 250
