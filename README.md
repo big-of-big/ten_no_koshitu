@@ -25,3 +25,8 @@ rubocop,slim-lint,eslintを実行します。
 ```
 $ bin/lint
 ```
+
+## テスト
+```
+$ bundle exec rspec
+```
