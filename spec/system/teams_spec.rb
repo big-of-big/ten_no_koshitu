@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Users", type: :system do
+RSpec.describe "Teams", type: :system do
   let(:team_1) { Team.create!(id: 1, name: "ぴよぴよ麻雀部", join_key: "35232") }
   let(:team_2) { Team.create!(id: 2, name: "つよつよ麻雀部", join_key: "52423") }
   let(:user) { User.create!(name: "komugi", password: "password", team_id: team_1.id) }
