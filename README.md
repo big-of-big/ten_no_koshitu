@@ -4,6 +4,22 @@
 競技麻雀部向けの成績管理システムです。
 ユーザーは自分やチームメイトの成績を見ることができ、
 エクセルとは違って手動で成績を入力する必要がないことが特徴です。
+
+## 使用技術
+- Ruby
+- Ruby on Rails
+- JavaScript
+- Vue.js
+- Slim
+- SCSS
+- Bootstrap
+- PostgreSQL
+- RSpec
+- RuboCop
+- ESLint
+- Slim-Lint
+- Heroku
+
 ## インストール
 
 開発環境ではSQLite3を使用しています。
