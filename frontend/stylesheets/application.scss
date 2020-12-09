@@ -1,6 +1,11 @@
 @import "bootstrap";
 @import "nav.scss";
 @import "form.scss";
+@import "links.scss";
+@import "devise/**";
+@import "teams/**";
+@import "tenhou_accounts/**";
+@import "welcome/**";
 
 .container {
   min-height: calc(100vh - 70px);

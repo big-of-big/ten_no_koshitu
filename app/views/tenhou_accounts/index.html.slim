@@ -1,9 +1,9 @@
 = javascript_pack_tag "user"
-= javascript_pack_tag "tenhou_accounts/index"
-= stylesheet_pack_tag "tenhou_accounts/index"
 
 - if current_user.team.present?
     - if @tenhou_accounts.present?
+      h2.page-title
+        | #{current_user.team.name}の成績
       #table
         .form-check
           input#all-term type="checkbox" v-model="changeAll" class="form-check-input"

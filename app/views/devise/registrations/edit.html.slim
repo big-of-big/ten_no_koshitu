@@ -1,14 +1,11 @@
-= javascript_pack_tag "devise/registrations/edit"
-= stylesheet_pack_tag "devise/registrations/edit"
-
 - if @user.errors.any?
   .alert.alert-danger
     - @user.errors.full_messages.each do |msg|
      li.mb-0 = msg
 
-h2.page-title
-  | ユーザー設定
 .form
+  h2.page-title
+    | ユーザー設定
   = form_with model: resource, url: update_user_registration_path, local: true do |f|
     .form-group
       = f.label :name
