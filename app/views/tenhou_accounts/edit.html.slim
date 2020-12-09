@@ -3,9 +3,9 @@
     - @tenhou_account.errors.full_messages.each do |msg|
      li.mb-0 = msg
 
-h2.page-title
-  | アカウント名変更
 .form
+  h2.page-title
+    | アカウント名変更
   = form_with model: @tenhou_account, local: true do |f|
     .form-group
       = f.label :name

@@ -2,6 +2,8 @@
 
 - if current_user.team.present?
     - if @tenhou_accounts.present?
+      h2.page-title
+        | #{current_user.team.name}の成績
       #table
         .form-check
           input#all-term type="checkbox" v-model="changeAll" class="form-check-input"
