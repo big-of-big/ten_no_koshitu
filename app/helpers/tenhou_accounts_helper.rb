@@ -1,6 +1,4 @@
 module TenhouAccountsHelper
-  include LogsHelper
-
   # viewから使っている
   def set_three_and_four_games(tenhou_account)
     my_one_game_objects = set_my_one_game_objects(tenhou_account)
@@ -18,12 +16,13 @@ module TenhouAccountsHelper
   end
 
   def set_my_one_game_objects(tenhou_account)
+    log = Log.new
     one_game_objects = set_one_game_objects(tenhou_account)
 
     # 全期間の4人打ちと3人打ちが混じった配列
     my_one_game_objects =
       one_game_objects.select do |one_game_object|
-        tenhou_accounts_names = extract_tenhou_accounts_from(one_game_object.one_game_log)
+        tenhou_accounts_names = log.extract_tenhou_accounts_from(one_game_object.one_game_log)
         tenhou_accounts_names.include?(tenhou_account.name)
       end
     my_one_game_objects
