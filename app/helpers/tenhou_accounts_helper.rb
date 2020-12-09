@@ -1,6 +1,7 @@
 module TenhouAccountsHelper
   include LogsHelper
 
+  # viewから使っている
   def set_three_and_four_games(tenhou_account)
     my_one_game_objects = set_my_one_game_objects(tenhou_account)
     # この配列に全期間の3人打ちと4人打ちのgame_objectが格納されている
