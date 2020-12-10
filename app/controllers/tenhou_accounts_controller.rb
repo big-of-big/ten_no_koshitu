@@ -13,9 +13,9 @@ class TenhouAccountsController < ApplicationController
     hash = three_and_four_games_of(@tenhou_account)
     @three_games = hash[:three_games]
     @four_games = hash[:four_games]
-    @my_one_game_objects = my_one_game_objects_of(@tenhou_account)
+    @my_one_game_objects = OneGame.my_one_game_objects_of(@tenhou_account)
 
-    @one_month_games = make_one_month_games_objects(@my_one_game_objects)
+    @one_month_games = OneMonthGames.make_one_month_games_objects(@my_one_game_objects)
 
     # 全期間の得点が入った配列
     @four_games_scores = scores(@four_games, @tenhou_account.name)

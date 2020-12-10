@@ -1,5 +1,4 @@
 module LogsHelper
-  # viewから使っている
   def scores(games, tenhou_account_name)
     games.map do |game|
       m = /#{Regexp.escape(tenhou_account_name)}\((?<score>.+?)\)/.match(game.one_game_log)
@@ -7,7 +6,6 @@ module LogsHelper
     end
   end
 
-  # viewから使っている
   def rankings(games, tenhou_account_name)
     log = Log.new
     games.map do |game|
