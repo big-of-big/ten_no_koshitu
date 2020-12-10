@@ -1,7 +1,7 @@
 module TenhouAccountsHelper
   # viewから使っている
-  def set_three_and_four_games(tenhou_account)
-    my_one_game_objects = set_my_one_game_objects(tenhou_account)
+  def three_and_four_games_of(tenhou_account)
+    my_one_game_objects = my_one_game_objects_of(tenhou_account)
     # この配列に全期間の3人打ちと4人打ちのgame_objectが格納されている
     three_games = []
     four_games = []
@@ -15,9 +15,9 @@ module TenhouAccountsHelper
     { three_games: three_games, four_games: four_games }
   end
 
-  def set_my_one_game_objects(tenhou_account)
+  def my_one_game_objects_of(tenhou_account)
     log = Log.new
-    one_game_objects = set_one_game_objects(tenhou_account)
+    one_game_objects = one_game_objects_of(tenhou_account)
 
     # 全期間の4人打ちと3人打ちが混じった配列
     my_one_game_objects =
@@ -28,7 +28,7 @@ module TenhouAccountsHelper
     my_one_game_objects
   end
 
-  def set_one_game_objects(tenhou_account)
+  def one_game_objects_of(tenhou_account)
     team_logs = TeamLog.where(team_id: tenhou_account.team_id)
     game_objects =
       team_logs.map do |team_log|

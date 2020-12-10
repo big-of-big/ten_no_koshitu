@@ -35,7 +35,7 @@
               th class="text-right" scope="col" 試合数
           tbody
           - @tenhou_accounts.each do |tenhou_account|
-            - hash = set_three_and_four_games(tenhou_account)
+            - hash = three_and_four_games_of(tenhou_account)
             tr is="user" tenhou-name="#{tenhou_account.name}" three-games-string="#{hash[:three_games].to_json}" four-games-string="#{hash[:four_games].to_json}" url="#{tenhou_account_path(tenhou_account)}" v-bind:term="term"
 
       = link_to "ログを確認する", team_logs_path(current_user.team), class: "btn btn-primary"

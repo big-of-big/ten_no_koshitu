@@ -10,10 +10,10 @@ class TenhouAccountsController < ApplicationController
   end
 
   def show
-    hash = set_three_and_four_games(@tenhou_account)
+    hash = three_and_four_games_of(@tenhou_account)
     @three_games = hash[:three_games]
     @four_games = hash[:four_games]
-    @my_one_game_objects = set_my_one_game_objects(@tenhou_account)
+    @my_one_game_objects = my_one_game_objects_of(@tenhou_account)
 
     @one_month_games = make_one_month_games_objects(@my_one_game_objects)
 
