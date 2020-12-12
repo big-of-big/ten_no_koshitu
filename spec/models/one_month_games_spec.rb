@@ -4,7 +4,6 @@ RSpec.describe OneMonthGames, type: :model do
   describe ".make_one_month_games_objects" do
     let!(:team) { create(:team) }
     let!(:team_log) { create(:team_log) }
-    let!(:komugi) { create(:komugi) }
 
     it "TenhouAccountオブジェクトが打った全てのOneMonthGameオブジェクトを取得できる" do
       one_game_objects = [
@@ -20,7 +19,7 @@ RSpec.describe OneMonthGames, type: :model do
         OneMonthGames .make_one_month_games_objects(one_game_objects)[1]
           .three_games[0]
           .one_game_log
-      ).to eq  "L1412 | 18:44 | 三般東喰赤－ | 夜叉丸(+69.0) こむぎ(-18.0) グランドクロス(-51.0)"
+      ).to eq "L1412 | 18:44 | 三般東喰赤－ | 夜叉丸(+69.0) こむぎ(-18.0) グランドクロス(-51.0)"
     end
   end
 end
