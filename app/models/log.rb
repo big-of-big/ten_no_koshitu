@@ -2,7 +2,6 @@ require "open-uri"
 require "zlib"
 
 class Log < ApplicationRecord
-  include LogsHelper
   validates :name, uniqueness: true
   after_create :pass_log_to_team
 
@@ -26,6 +25,27 @@ class Log < ApplicationRecord
       log = gz.read
     }
     { name: date.strftime("%Y/%m/%d"), content: log }
+  end
+
+  # チームメンバー全員の天鳳アカウント名の配列を作る
+  def team_members(team)
+    return if team.tenhou_accounts.empty?
+    tenhou_names = team.tenhou_accounts.map do |tenhou_account|
+      tenhou_account.name
+    end
+    tenhou_names
+  end
+
+  # 1つのログから天鳳アカウント名だけ抜き出し配列にする
+  def extract_tenhou_accounts_from(game)
+    ary = game.split(" ")
+    ary.shift(6) # ログから不要な部分(部屋番号や時間など)を削除
+    names =
+      ary.map do |one_game|
+        m = /(?<name>.+)\((?<score>[+-]?[\d\.]+)/.match(one_game)
+        m[:name]
+      end
+    names
   end
 
   private

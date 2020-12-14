@@ -33,6 +33,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "sqlite3", "~> 1.4"
   gem "rspec-rails", "~> 4.0.1"
+  gem "pry-byebug"
 end
 
 group :development do
@@ -43,7 +44,6 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   # not defalut
-  gem "pry-byebug"
   gem "awesome_print"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
@@ -59,6 +59,7 @@ group :test do
   gem "selenium-webdriver"
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
+  gem "factory_bot_rails"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -71,7 +72,6 @@ gem "rails-i18n"
 gem "rack-attack"
 gem "sprockets", "~> 3.7.2" # assetsディレクトリの削除に必要
 gem "kaminari"
-
 
 group :production do
   gem "pg"
