@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
     end
     redirect_to root_path, notice: "チームを作成しました。"
 
-    rescue => e
+    rescue
       render :new
   end
 

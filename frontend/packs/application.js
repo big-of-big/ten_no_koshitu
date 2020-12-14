@@ -21,3 +21,24 @@ require('channels')
 //
 const images = require.context('../images', true) // eslint-disable-line
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener('DOMContentLoaded', () => {
+  const flashMessage = document.querySelector('.alert-success')
+  const fadeOutFlashMessage = () => {
+    const timerId = setInterval(() => {
+      const opacity = flashMessage.style.opacity
+
+      if (opacity > 0) {
+        flashMessage.style.opacity = opacity - 0.02
+      } else {
+        flashMessage.style.display = 'none'
+        clearInterval(timerId)
+      };
+    }, 50) // 今回は0.05秒ごとにsetIntervalを実行
+  }
+
+  if (flashMessage !== null) {
+    flashMessage.style.opacity = 1
+    setTimeout(fadeOutFlashMessage, 3000)
+  }
+})
