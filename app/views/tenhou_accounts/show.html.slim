@@ -1,71 +1,78 @@
 = javascript_pack_tag "result"
 
 h2 = @tenhou_account.name
-.score
-  p
-    | 対戦数 #{@my_one_game_objects.count}
-  p
-    | 合計得点 #{(@four_games_scores + @three_games_scores).sum}
-- unless @four_games_scores.present?
-  p
-    | 4人打ちの対戦記録はありません
-- else
-  .card.text-center.mb-3
-    .card-header
-      | 4人打ち
-    .card-body
-      .row
-        .col-sm-4
-          .card
-            p.card-text
-              | 合計得点
-            p.card-text
-              = @four_games_scores.sum
-        .col-sm-4
-          .card
-            p.card-text
-              | 平均順位
-            p.card-text
-              = (@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2)
-        .col-sm-4
-          .card
-            p.card-text
-              | 対戦数
-            p.card-text
-              = @four_games_scores.count
+.main-box
+  .right
+    .score.score-right
+      h3.mr-3
+        | 総合成績
+      p
+        | 対戦数 #{@my_one_game_objects.count}
+      p
+        | 合計得点 #{(@four_games_scores + @three_games_scores).sum}
+    - unless @four_games_scores.present?
+      p
+        | 4人打ちの対戦記録はありません
+    - else
+      .card.text-center.mb-3
+        .card-header
+          | 4人打ち
+        .card-body
+          .row
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 合計得点
+                p.card-text.card-result
+                  = @four_games_scores.sum
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 平均順位
+                p.card-text.card-result
+                  = (@four_games_rankings.sum(0.0) / @four_games_rankings.count).round(2)
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 対戦数
+                p.card-text.card-result
+                  = @four_games_scores.count
 
-- unless @three_games_scores.present?
-  p
-    | 3人打ちの対戦記録はありません。
-- else
-  .card.text-center.mb-3
-    .card-header
-      | 3人打ち
-    .card-body
-      .row
-        .col-sm-4
-          .card
-            p.card-text
-              | 合計得点
-            p.card-text
-              = @three_games_scores.sum
-        .col-sm-4
-          .card
-            p.card-text
-              | 平均順位
-            p.card-text
-              = (@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2)
-        .col-sm-4
-          .card
-            p.card-text
-              | 対戦数
-            p.card-text
-              = @three_games_scores.count
-#results
-  result(tenhou-name="#{@tenhou_account.name}"
-    three-games-string="#{@three_games.to_json}"
-    four-games-string="#{@four_games.to_json}"
-  )
+    - unless @three_games_scores.present?
+      p
+        | 3人打ちの対戦記録はありません。
+    - else
+      .card.text-center.mb-3.user-score
+        .card-header
+          | 3人打ち
+        .card-body
+          .row
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 合計得点
+                p.card-text.card-result
+                  = @three_games_scores.sum
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 平均順位
+                p.card-text.card-result
+                  = (@three_games_rankings.sum(0.0) / @three_games_rankings.count).round(2)
+            .col-sm-4
+              .card
+                p.card-text.card-label
+                  | 対戦数
+                p.card-text.card-result
+                  = @three_games_scores.count
+  .left
+    h3
+      | 任意の期間の成績
+    #results
+      result(tenhou-name="#{@tenhou_account.name}"
+        three-games-string="#{@three_games.to_json}"
+        four-games-string="#{@four_games.to_json}"
+      )
 
 h3
   | 月別の成績

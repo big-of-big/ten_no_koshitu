@@ -5,18 +5,61 @@
     <span>〜</span>
     <input type="date" v-model="end">
     <div class="data">
-      <p>
-        4人打ち
-        得点:{{ displayScore(selectedFourGames) }}
-        平均順位:{{ averageRanking(selectedFourGames) }}
-        対戦数:{{ selectedFourGames.length}}
-      </p>
-      <p>
-        3人打ち
-        得点:{{ displayScore(selectedThreeGames) }}
-        平均順位:{{ averageRanking(selectedThreeGames) }}
-        対戦数:{{ selectedThreeGames.length}}
-      </p>
+      <div class="card text-center mb-3 user-score">
+        <div class="card-header">
+          4人打ち
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">合計得点</p>
+                <p class="card-text card-result">{{ displayScore(selectedFourGames) }}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">平均順位</p>
+                <p class="card-text card-result">{{ averageRanking(selectedFourGames) }}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">対戦数</p>
+                <p class="card-text card-result">{{ selectedFourGames.length}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card text-center mb-3 user-score">
+        <div class="card-header">
+          3人打ち
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">合計得点</p>
+                <p class="card-text card-result">{{ displayScore(selectedThreeGames) }}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">平均順位</p>
+                <p class="card-text card-result">{{ averageRanking(selectedThreeGames) }}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <p class="card-text card-label">対戦数</p>
+                <p class="card-text card-result">{{ selectedThreeGames.length}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
