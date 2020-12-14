@@ -5,15 +5,6 @@
 }
 
 .team-btns {
-  // margin:0 auto;
-  // text-align: center;
-  // margin-top: 3rem;
-  // .btn {
-  //   padding: 1rem 7rem;
-  //   font-size: 1.5rem;
-  //   margin-top: 2rem;
-  //   margin-right: 2rem;
-  // }
   margin:0 auto;
   text-align: center;
   margin-top: 3rem;
@@ -44,7 +35,13 @@
 }
 
 #table {
+  #all-term {
+    margin-top:0.4rem;
+  }
   margin-top: 3rem;
+  label {
+    font-size: 1.25rem;
+  }
 }
 
 .user-name {
