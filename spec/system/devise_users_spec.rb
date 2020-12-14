@@ -7,7 +7,7 @@ RSpec.describe "UserAuthentications", type: :system do
       fill_in "ユーザー名(ログインに使用します)", with: "komugi"
       fill_in "パスワード(6文字以上)", with: "password"
       fill_in "パスワード(確認)", with: "password"
-      click_button "ユーザー登録"
+      click_button "アカウント作成"
       expect(page).to have_content "アカウント登録が完了しました。"
     end
 
@@ -38,7 +38,7 @@ RSpec.describe "UserAuthentications", type: :system do
       fill_in "ユーザー名(ログインに使用します)", with: "komugi"
       fill_in "パスワード(6文字以上)", with: "pass"
       fill_in "パスワード(確認)", with: "pass"
-      click_button "ユーザー登録"
+      click_button "アカウント作成"
       expect(page).to have_content "パスワードは6文字以上で入力してください"
     end
 
@@ -47,7 +47,7 @@ RSpec.describe "UserAuthentications", type: :system do
       fill_in "ユーザー名(ログインに使用します)", with: "komugi"
       fill_in "パスワード(6文字以上)", with: "password"
       fill_in "パスワード(確認)", with: "hogehoge"
-      click_button "ユーザー登録"
+      click_button "アカウント作成"
       expect(page).to have_content "パスワード(確認)とパスワードの入力が一致しません"
     end
 
@@ -57,7 +57,7 @@ RSpec.describe "UserAuthentications", type: :system do
       fill_in "ユーザー名(ログインに使用します)", with: "komugi"
       fill_in "パスワード(6文字以上)", with: "password"
       fill_in "パスワード(確認)", with: "password"
-      click_button "ユーザー登録"
+      click_button "アカウント作成"
       expect(page).to have_content "ユーザー名はすでに存在します"
     end
 
