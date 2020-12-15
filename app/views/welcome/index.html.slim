@@ -10,6 +10,7 @@ html
     = javascript_pack_tag "application"
     = favicon_pack_tag "favicon.ico"
     = stylesheet_pack_tag "application"
+    link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet"
   body
     .top
       h1
@@ -27,22 +28,20 @@ html
           = link_to "会員登録済みの方はこちらからログイン", login_path, class: "login-link"
     .container
       h2
-        | 天の個室とは
-      p
-        | 天の個室は天鳳個室の成績を自動で計算する成績管理システムです。
+        | チームを作ったその日から、
         br
-          | チームを作ったその日から、メンバー全員の成績を追跡します。
+        | メンバー全員の成績を追跡します。
 
       .row
         .col-lg-6.feature
           h3
-            | あなたは天鳳を打つだけ
+            | やることは天鳳を打つだけ
           p
             | 今までは手動で入力して計算していた得点、平均順位、対戦数を全て自動で計算します。
           p
             | 計算が合わなくて揉めることはもうありません。
         .col-lg-6
-          = image_pack_tag "team.png", class: "feature-image"
+          = image_pack_tag "team.png", class: "feature-image screen-shot"
       .row
         .col-lg-6.feature
           h3
@@ -52,7 +51,7 @@ html
           p
             | ある1日だけの成績や特定の期間の成績など、あなたが必要とする成績を表示することができます。
         .col-lg-6
-          = image_pack_tag "term.png", class: "term-image"
+          = image_pack_tag "term.png", class: "term-image screen-shot"
       .row.log-row
         .col-lg-6.log-feature
           h3
@@ -62,7 +61,7 @@ html
           p
             | ログは加工せずにそのまま表示しているため、細かい情報も見逃しません。
         .col-lg-6
-          = image_pack_tag "log.png", class: "log-image"
+          = image_pack_tag "log.png", class: "log-image screen-shot"
 
       h2
         | よくある質問
