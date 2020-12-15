@@ -1,81 +1,104 @@
-.top.row
-  .concept.col-lg-6
-    p
-      | チームを作って天鳳を打つだけ！
-    p
-      | 天鳳個室の成績を、
-    p
-      |もう手動で入力する必要はありません！
-    = link_to "アカウント作成(無料)", signup_path, class: "btn btn-success important-btn"
-  .col-lg-6
-    = image_pack_tag "tenhou.jpg", class: "tenhou-image"
-h2
-  | 天の個室とは
-p
-  | 天の個室は天鳳個室の成績を自動で計算する成績管理システムです。
-  br
-    | チームを作ったその日から、メンバー全員の成績を追跡します。
+doctype html
+html
+  head
+    title
+      | 天の個室
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content="天の個室は、天鳳個室の成績を自動でダウンロード・計算します。成績を手動で入力する必要はもうありません。"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_pack_tag "application"
+    = favicon_pack_tag "favicon.ico"
+    = stylesheet_pack_tag "application"
+  body
+    .top
+      h1
+        | 天の個室
+      p.sub-title
+        | 天鳳個室の成績を自動で計算する成績管理システム
+      p.message
+        | 天鳳個室の成績を、
+      p.message
+        |手動で入力する必要はありません！
+      .start
+        p
+          = link_to "アカウント作成(無料)", signup_path, class: "btn btn-success important-btn"
+        p
+          = link_to "会員登録済みの方はこちらからログイン", login_path, class: "login-link"
+    .container
+      h2
+        | 天の個室とは
+      p
+        | 天の個室は天鳳個室の成績を自動で計算する成績管理システムです。
+        br
+          | チームを作ったその日から、メンバー全員の成績を追跡します。
 
-.row
-  .col-lg-6.feature
-    h3
-      | あなたは天鳳を打つだけ
-    p
-      | 今までは手動で入力して計算していた得点、平均順位、対戦数を全て自動で計算します。
-    p
-      | 計算が合わなくて揉めることはもうありません。
-  .col-lg-6
-    = image_pack_tag "team.png", class: "feature-image"
-.row
-  .col-lg-6.feature
-    h3
-      | 任意の期間を選択できる
-    p
-      | 総合成績だけではありません。
-    p
-      | ある1日だけの成績や特定の期間の成績など、あなたが必要とする成績を表示することができます。
-  .col-lg-6
-    = image_pack_tag "term.png", class: "term-image"
-.row.log-row
-  .col-lg-6.log-feature
-    h3
-      | チームのログを見れる
-    p
-      | 天鳳を打った日のログは自動でダウンロードされます。
-    p
-      | ログは加工せずにそのまま表示しているため、細かい情報も見逃しません。
-  .col-lg-6
-    = image_pack_tag "log.png", class: "log-image"
+      .row
+        .col-lg-6.feature
+          h3
+            | あなたは天鳳を打つだけ
+          p
+            | 今までは手動で入力して計算していた得点、平均順位、対戦数を全て自動で計算します。
+          p
+            | 計算が合わなくて揉めることはもうありません。
+        .col-lg-6
+          = image_pack_tag "team.png", class: "feature-image"
+      .row
+        .col-lg-6.feature
+          h3
+            | 任意の期間を選択できる
+          p
+            | 総合成績だけではありません。
+          p
+            | ある1日だけの成績や特定の期間の成績など、あなたが必要とする成績を表示することができます。
+        .col-lg-6
+          = image_pack_tag "term.png", class: "term-image"
+      .row.log-row
+        .col-lg-6.log-feature
+          h3
+            | チームのログを見れる
+          p
+            | 天鳳を打った日のログは自動でダウンロードされます。
+          p
+            | ログは加工せずにそのまま表示しているため、細かい情報も見逃しません。
+        .col-lg-6
+          = image_pack_tag "log.png", class: "log-image"
 
-h2
-  | よくある質問
+      h2
+        | よくある質問
 
-.d-flex.color
-  a class="btn question" type="button" data-toggle="collapse" data-target="#answer1" aria-expanded="false" aria-controls="answer1"
-    | Q. 過去の成績は取得できますか？
-  i.fas.fa-angle-down.icon
-.collapse#answer1
-  p
-    | A.できません。チームを作った日から成績の取得が始まります。
-.d-flex.color
-  a class="btn question" type="button" data-toggle="collapse" data-target="#answer2" aria-expanded="false" aria-controls="answer2"
-    | Q. 成績はいつ更新されますか？
-  i.fas.fa-angle-down.icon
-.collapse#answer2
-  p
-    | A.毎日夜12時半に成績が更新されます。
-.d-flex.color
-  a class="btn question" type="button" data-toggle="collapse" data-target="#answer3" aria-expanded="false" aria-controls="answer3"
-    | Q. チームメンバー全員が天の個室のアカウントを作成する必要はありますか？
-  i.fas.fa-angle-down.icon
-.collapse#answer3
-  p
-    | A.いいえ、必要ありません。一人だけでも大丈夫です。
+      .d-flex.color
+        a class="btn question" type="button" data-toggle="collapse" data-target="#answer1" aria-expanded="false" aria-controls="answer1"
+          | Q. 過去の成績は取得できますか？
+        i.fas.fa-angle-down.icon
+      .collapse#answer1
+        p
+          | A.できません。チームを作った日から成績の取得が始まります。
+      .d-flex.color
+        a class="btn question" type="button" data-toggle="collapse" data-target="#answer2" aria-expanded="false" aria-controls="answer2"
+          | Q. 成績はいつ更新されますか？
+        i.fas.fa-angle-down.icon
+      .collapse#answer2
+        p
+          | A.毎日夜12時半に成績が更新されます。
+      .d-flex.color
+        a class="btn question" type="button" data-toggle="collapse" data-target="#answer3" aria-expanded="false" aria-controls="answer3"
+          | Q. チームメンバー全員が天の個室のアカウントを作成する必要はありますか？
+        i.fas.fa-angle-down.icon
+      .collapse#answer3
+        p
+          | A.いいえ、必要ありません。一人だけでも大丈夫です。
 
-.d-flex.color
-  a class="btn question" type="button" data-toggle="collapse" data-target="#answer4" aria-expanded="false" aria-controls="answer4"
-    |Q. チームメンバー以外のプレーヤーが混じった場合の成績はどうなりますか？
-  i.fas.fa-angle-down.icon
-.collapse#answer4
-  p
-    |A. 計算されません。1半荘のプレーヤーが全て同じチームのメンバーだったの場合のみ、チームの成績として計算されます。
+      .d-flex.color
+        a class="btn question" type="button" data-toggle="collapse" data-target="#answer4" aria-expanded="false" aria-controls="answer4"
+          |Q. チームメンバー以外のプレーヤーが混じった場合の成績はどうなりますか？
+        i.fas.fa-angle-down.icon
+      .collapse#answer4
+        p
+          |A. 計算されません。1半荘のプレーヤーが全て同じチームのメンバーだったの場合のみ、チームの成績として計算されます。
+    footer.bg-dark
+      p.pt-3
+        = link_to "利用規約", tos_path, class: "mr-2"
+        = link_to "プライバシーポリシー", policy_path
+      p
+        | &copy;2020 ten-no-koshitu All rights reserved.

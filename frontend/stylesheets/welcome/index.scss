@@ -1,94 +1,115 @@
 .top {
-  display: flex;
-  margin-top: 5rem;
-  .concept {
+  background-color: black;
+  color: white;
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+    padding-top: 5rem;
+  }
+
+  .sub-title {
     text-align: center;
-    padding-top: 3rem;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
   }
-  p {
-    margin-bottom: 0;
-    font-size: 2rem;
-    text-align: left;
+
+  .message {
+    font-size: 4rem;
+    text-align: center;
   }
-}
 
-p {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
+  .start {
+    text-align: center;
+    padding-bottom: 5rem;
 
-.important-btn {
-  width: 80%;
-  margin-top: 1.5rem;
-  border-radius: 50px;
-  padding: 1rem 0;
-  font-size: 2rem;
-}
+    p {
+      margin-bottom: 1rem;
+    }
 
-h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.5rem;
-}
+    .important-btn {
+      width: 30%;
+      margin-top: 1.5rem;
+      padding: 1rem 0;
+      font-size: 2rem;
+    }
 
-.last {
-  margin-bottom: 0;
-}
-
-.question {
-  font-size: 1.5rem;
-  width: 100%;
-  text-align: left;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  line-height: 3rem;
-}
-
-.color:hover {
-  background-color: #2dcc77;
-}
-
-.icon {
-  line-height: 3rem;
-  padding-top: 0.25rem;
-  font-size: 3rem;
-}
-
-.tenhou-image {
-  width: 100%;
-  margin-top: 2rem;
-}
-
-.feature-image {
-  width: 100%;
-}
-
-.term-image {
-  padding-top: 2rem;
-  width: 100%;
-}
-
-.log-image {
-  width: 100%;
-}
-
-.feature {
-  padding-top: 3.5rem;
-}
-
-.log-row {
-  margin-top: 2rem;
-  .log-feature {
-    padding-top: 1rem;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .top {
-    .concept {
-      padding-top: 0;
+    .login-link {
+      color: yellow;
+      margin-top: 2rem;
     }
   }
 }
+//
+// p {
+//   margin-bottom: 0.5rem;
+//   font-size: 1.25rem;
+// }
+//
+//
+// h2 {
+//   margin-top: 2rem;
+//   margin-bottom: 1rem;
+//   border-bottom: 1px solid #ddd;
+//   padding-bottom: 0.5rem;
+// }
+//
+// .last {
+//   margin-bottom: 0;
+// }
+//
+// .question {
+//   font-size: 1.5rem;
+//   width: 100%;
+//   text-align: left;
+//   padding: 0;
+//   border: none;
+//   border-radius: 0;
+//   line-height: 3rem;
+// }
+//
+// .color:hover {
+//   background-color: #2dcc77;
+// }
+//
+// .icon {
+//   line-height: 3rem;
+//   padding-top: 0.25rem;
+//   font-size: 3rem;
+// }
+//
+// .tenhou-image {
+//   width: 100%;
+//   margin-top: 2rem;
+// }
+//
+// .feature-image {
+//   width: 100%;
+// }
+//
+// .term-image {
+//   padding-top: 2rem;
+//   width: 100%;
+// }
+//
+// .log-image {
+//   width: 100%;
+// }
+//
+// .feature {
+//   padding-top: 3.5rem;
+// }
+//
+// .log-row {
+//   margin-top: 2rem;
+//   .log-feature {
+//     padding-top: 1rem;
+//   }
+// }
+//
+// @media screen and (max-width: 992px) {
+//   .top {
+//     .concept {
+//       padding-top: 0;
+//     }
+//   }
+// }
