@@ -55,9 +55,12 @@ p {
 }
 
 .container {
+  .big-message {
+    font-size: 3.5rem;
+  }
   h2 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -107,9 +110,14 @@ p {
 }
 
 @media screen and (max-width: 760px) {
-  .btn-success {
-    width: 90% !important;
+  .top {
+    .start {
+      .important-btn {
+        width: 90% ;
+      }
+    }
   }
+
   .message {
     font-size: 2rem !important;;
   }

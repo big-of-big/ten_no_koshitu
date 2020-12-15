@@ -13,6 +13,10 @@ html
     link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet"
   body
     .top
+      - if flash.notice
+        .alert.alert-success.mt-0 = flash.notice
+      - if flash.alert
+        .alert.alert-warning.mt-0 = flash.alert
       h1
         | 天の個室
       p.sub-title
@@ -27,7 +31,7 @@ html
         p
           = link_to "会員登録済みの方はこちらからログイン", login_path, class: "login-link"
     .container
-      h2
+      h2.big-message
         | チームを作ったその日から、
         br
         | メンバー全員の成績を追跡します。
